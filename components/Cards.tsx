@@ -5,7 +5,7 @@ export type CardsProps = {
     cards: CardProps[];
 };
 
-const Cards = ({ data }: CardsProps) => {
+const Cards = ({ data }: { data: CardProps[] }) => {
     console.log(data)
     return (
         <div className={css`
@@ -19,24 +19,24 @@ const Cards = ({ data }: CardsProps) => {
             & > :first-child {
                 grid-column: 1 / -1;
                 
-                & > [name="card"] {
+                & > [data-name="card"] {
                     &:hover {
                         transform: none;
                         background-color: transparent;
                     }
                 }
 
-                & > div > [name="card-header"] {
+                & > div > [data-name="card-header"] {
                     max-height: 50vh;
                     border-radius: 0;
                     &:after {
                         background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 50%);
                     }
                 }
-                & > div > [name="title"] {
+                & > div > [data-name="title"] {
                     font-size: 2.5rem;
                 }
-                & > div > [name="description"] {
+                & > div > [data-name="description"] {
                     -webkit-line-clamp: 5;
                 }
             }

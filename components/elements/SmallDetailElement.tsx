@@ -6,7 +6,7 @@ const SmallDetailElement = (props: any) => {
             font-size: 0.8rem;
             font-weight: 400;
             color: #999;
-        `} name={props.name}>
+        `} data-name={props.name}>
             {props.text}
         </span>
     )

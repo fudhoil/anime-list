@@ -10,7 +10,7 @@ const TitleElement = ({ text }: { text: string }) => {
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
-    `} name="title">
+    `} data-name="title">
             {text}
         </h3>
     )

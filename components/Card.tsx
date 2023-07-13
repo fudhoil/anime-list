@@ -95,8 +95,8 @@ align-items: end;
 const Card = (props: CardProps) => {
     return (
         <Link href={`anime/${props?.title?.english}`} className={css`position: relative;`}>
-            <div className={card_css} name="card">
-                <div className={card_header_css} name="card-header">
+            <div className={card_css} data-name="card">
+                <div className={card_header_css} data-name="card-header">
                     <Image src={props?.coverImage?.extraLarge} alt={props?.title?.romaji} layout="responsive" width={300} height={300} />
                 </div>
                 <TitleElement text={props?.title?.romaji} />

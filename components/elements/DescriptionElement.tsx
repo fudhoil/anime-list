@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 import parse from 'html-react-parser';
 
-const DescriptionElement = ({ text }: { description: string }) => {
+const DescriptionElement = ({ text }: { text: string }) => {
     return (
         <p className={css`
             overflow: hidden;
@@ -12,7 +12,7 @@ const DescriptionElement = ({ text }: { description: string }) => {
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-        `} name="description">
+        `} data-name="description">
             {parse(text)}
         </p>
     )

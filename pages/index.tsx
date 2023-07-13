@@ -71,7 +71,7 @@ export default function Home() {
         <title>Anime List</title>
       </Head>
       {/* anilist with pagination */}
-      <div div className={css`
+      <div className={css`
         display: flex;
         flex-direction: column;
         align-items: center;
