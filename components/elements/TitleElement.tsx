@@ -1,5 +1,5 @@
 import { css } from '@emotion/css';
-import { TitleElementProps } from '@/types/elements';
+import type { TitleElementProps } from '@/types/elements';
 
 const TitleElement = ({ text, f_size, f_weight }: TitleElementProps) => {
     return (

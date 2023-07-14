@@ -1,4 +1,5 @@
-import Card, { CardProps } from "./Card";
+import Card from "./Card";
+import type { CardProps } from "@/types/elements";
 import { css } from '@emotion/css';
 
 export type CardsProps = {

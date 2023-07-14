@@ -1,4 +1,4 @@
-import { PaginationElementProps } from "@/types/elements";
+import type { PaginationElementProps } from "@/types/elements";
 import { css } from "@emotion/css";
 
 const PaginationElement = ({ page, setPage, lastPage, setQuery, list, perPage }: PaginationElementProps) => {

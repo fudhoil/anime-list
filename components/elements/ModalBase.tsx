@@ -18,7 +18,8 @@ const ModalBase = ({ children, open }: { children: any, open: boolean }) => {
     `}>
             <div className={css`
             position: relative;
-            background-color: #333;
+            background-color: #111;
+            border: 1px solid #fafafa;
             padding: 1rem;
             border-radius: 5px;
             width: 90%;

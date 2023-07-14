@@ -6,10 +6,10 @@ import { css } from '@emotion/css'
 import Link from 'next/link'
 import { use, useEffect, useState } from 'react'
 import PaginationElement from '@/components/elements/PaginationElement'
-import Modal from '@/components/Modal'
 import { useCollections, useCollectionsDispatch } from '@/contexts/CollectionsContext'
 import CardsSkeleton from '@/components/elements/skeleton/CardsSkeleton'
 import Header from '@/components/elements/Header'
+import getLayouts from '@/utils/getLayouts'
 
 // anilist
 const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
@@ -51,15 +51,7 @@ const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
           episodes
           duration
           genres
-          reviews {
-            nodes {
-              id
-              summary
-              body
-              rating
-              ratingAmount
-            }
-          }
+          averageScore
         }
       }
     }
@@ -89,35 +81,16 @@ export default function Home() {
         <title>Anime List</title>
       </Head>
       {/* anilist with pagination */}
-      <div className={css`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        margin: 0 auto;
-        padding: 1rem 1rem;
-        color: #fafafa;
-      `}>
-        <Header title="Anime List" subtitle="List of all anime" />
-        {/* line */}
-        <div className={css`
-          width: 100%;
-          height: 1px;
-          background-color: #333;
-          margin-bottom: 2rem;
-        `} />
-        {loading &&
-          <CardsSkeleton count={perPage} />
-        }
+      {loading &&
+        <CardsSkeleton count={perPage} />
+      }
 
-        <Cards data={data?.Page?.media} />
-      </div >
-
-      {/* modal */}
-      <Modal />
+      <Cards data={data?.Page?.media} />
 
       {/* pagination */}
       <PaginationElement page={page} setPage={setPage} lastPage={lastPage} setQuery={setQuery} list={anime_list} perPage={perPage} />
     </>
   )
 }
+
+Home.getLayout = (page: any, pageProps: any) => getLayouts(page, "base", pageProps);

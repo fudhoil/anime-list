@@ -7,44 +7,8 @@ import SmallDetailElement from "./elements/SmallDetailElement";
 import { use, useEffect, useRef, useState } from "react";
 import PopupDescriptionElement from "./elements/PopupDescriptionElement";
 import { useCollections, useCollectionsDispatch } from "@/contexts/CollectionsContext";
-
-export type CardProps = {
-    id: number;
-    title: {
-        romaji: string;
-        english: string;
-        native: string;
-    };
-    description: string;
-    coverImage: {
-        large: string;
-        extraLarge: string;
-        medium: string;
-        color: string;
-    };
-    startDate: {
-        year: number;
-        month: number;
-        day: number;
-    };
-    endDate: {
-        year: number;
-        month: number;
-        day: number;
-    };
-    episodes: number;
-    duration: number;
-    genres: string[];
-    reviews: {
-        nodes: {
-            id: number;
-            summary: string;
-            body: string;
-            rating: number;
-            ratingAmount: number;
-        }[];
-    };
-};
+import { useRouter } from "next/router";
+import type { CardProps } from "@/types/elements";
 
 const card_css = css`
 padding: 5px;
@@ -114,6 +78,7 @@ const Card = (props: CardProps) => {
     const [isLeft, setIsLeft] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
     const dispatch = useCollectionsDispatch()
+    const router = useRouter()
 
     useEffect(() => {
         setIsMobile(window.innerWidth < 768)
@@ -143,17 +108,21 @@ const Card = (props: CardProps) => {
         `}>
             <button className={css`
                 position: relative;
-                // reset button styles
+                reset button styles
                 padding: 0;
                 border: none;
                 background: none;
                 outline: none;
                 cursor: pointer;
                 `}
+                // href={`/anime/${props?.title?.romaji?.replace(/\s/g, "-").toLowerCase()}-${props?.id}`}
+                // onClick={() => {
+                //     dispatch({ type: "SET_MODAL", modal: true });
+                //     dispatch({ type: "SET_MODAL_CONTENT", modalContent: props });
+                //     dispatch({ type: "SET_MODAL_TYPE", modalType: "show_details" });
+                // }}
                 onClick={() => {
-                    dispatch({ type: "SET_MODAL", modal: true });
-                    dispatch({ type: "SET_MODAL_CONTENT", modalContent: props });
-                    dispatch({ type: "SET_MODAL_TYPE", modalType: "show_details" });
+                    router.push(`/anime/${props?.title?.romaji?.replace(/\s/g, "-").toLowerCase()}`)
                 }}
                 onMouseEnter={() => !isMobile && setShowDescription(true)}
                 onMouseLeave={() => setShowDescription(false)}>
@@ -181,7 +150,7 @@ const Card = (props: CardProps) => {
                         <PopupDescriptionElement content={props} isLeft={isLeft} />
                     </div>
 
-                    {props?.reviews?.nodes[0]?.rating && (
+                    {props?.averageScore && (
                         <div className={css`
                             display: flex;
                             flex-direction: row;
@@ -213,7 +182,7 @@ const Card = (props: CardProps) => {
                                 <span className={css`
                                 font-size: 0.8rem;
                                 font-weight: 600;
-                            `}>{props?.reviews?.nodes[0]?.rating}</span>
+                            `}>{props?.averageScore}%</span>
                             </div>
                         </div>
                     )}

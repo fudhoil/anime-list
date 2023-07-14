@@ -12,9 +12,11 @@ const Header = ({ title, subtitle }: { title: string, subtitle: string }) => {
           align-items: center;
 
         `}>
-      <h1 className={title_css}>
-        {title}
-      </h1>
+      <Link href="/">
+        <h1 className={title_css}>
+          {title}
+        </h1>
+      </Link>
       {/* by fudhoil */}
       <span className={css`
           font-size: 1rem;

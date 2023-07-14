@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 import DescriptionElement from "./DescriptionElement";
 import { useEffect, useState } from "react";
-import { CardProps } from "../Card";
+import type { CardProps } from "@/types/elements";
 import TitleElement from "./TitleElement";
 import SmallDetailElement from "./SmallDetailElement";
 
