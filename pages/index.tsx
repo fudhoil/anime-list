@@ -4,58 +4,64 @@ import { gql, useQuery } from '../lib/graphql'
 import Cards from '@/components/Cards'
 import { css } from '@emotion/css'
 import Link from 'next/link'
+import { use, useEffect, useState } from 'react'
+import PaginationElement from '@/components/elements/PaginationElement'
 
 // anilist
-const anime_list = gql(`
-query {
-  Page {
-    pageInfo {
-      total
-      perPage
-      currentPage
-      lastPage
-      hasNextPage
-    },
-    media {
-      id
-      title {
-        romaji
-        english
-        native
-      }
-      coverImage {
-        extraLarge
-        large
-        medium
-        color
-      }
-      description
-      startDate {
-        year
-        month
-        day
-      }
-      endDate {
-        year
-        month
-        day
-      }
-      episodes
-      duration
-      genres
-      reviews {
-        nodes {
+const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
+  return (
+    gql(`
+    query {
+      Page(page: ${page}, perPage: ${perPage}) {
+        pageInfo {
+          total
+          perPage
+          currentPage
+          lastPage
+          hasNextPage
+        },
+        media {
           id
-          summary
-          body
-          rating
-          ratingAmount
+          title {
+            romaji
+            english
+            native
+          }
+          coverImage {
+            extraLarge
+            large
+            medium
+            color
+          }
+          description
+          startDate {
+            year
+            month
+            day
+          }
+          endDate {
+            year
+            month
+            day
+          }
+          episodes
+          duration
+          genres
+          reviews {
+            nodes {
+              id
+              summary
+              body
+              rating
+              ratingAmount
+            }
+          }
         }
       }
     }
-  }
+  `)
+  )
 }
-`)
 
 const title_css = css`
 font-size: 2rem;
@@ -63,8 +69,20 @@ margin: 2rem 0;
 `
 
 export default function Home() {
-  const { data, error, loading } = useQuery(anime_list)
-  console.log(data)
+  const [page, setPage] = useState(1)
+  const [perPage, setPerPage] = useState(20)
+  const [lastPage, setLastPage] = useState(1)
+
+  const [query, setQuery] = useState(anime_list({ page, perPage }))
+
+  const { data, error, loading } = useQuery(query)
+
+  useEffect(() => {
+    if (data?.Page?.pageInfo?.lastPage) {
+      setLastPage(data?.Page?.pageInfo?.lastPage)
+    }
+  }, [data])
+
   return (
     <>
       <Head>
@@ -119,6 +137,9 @@ export default function Home() {
 
         <Cards data={data?.Page?.media} />
       </div >
+
+      {/* pagination */}
+      <PaginationElement page={page} setPage={setPage} lastPage={lastPage} setQuery={setQuery} list={anime_list} perPage={perPage} />
     </>
   )
 }

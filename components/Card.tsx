@@ -99,7 +99,7 @@ transition: all 0.2s ease-in-out;
 outline: none;
 font-size: 0.7rem;
 font-weight: 600;
-width: 100%;
+width: 11rem;
 
 &:hover {
     background - color: #111;
@@ -121,7 +121,6 @@ const Card = (props: CardProps) => {
     }
 
     useEffect(() => {
-        console.log(isLeftSide())
         setIsLeft(isLeftSide())
     }, [isLeft, ref])
 
@@ -141,7 +140,7 @@ const Card = (props: CardProps) => {
                 onMouseLeave={() => setShowDescription(false)}>
                 <div className={card_css} data-name="card" ref={ref}>
                     <div className={card_header_css} data-name="card-header">
-                        <Image src={props?.coverImage?.extraLarge} alt={props?.title?.romaji} layout="responsive" width={300} height={300} />
+                        <Image src={props?.coverImage?.large} alt={props?.title?.romaji} layout="responsive" width={300} height={300} />
                     </div>
                     <TitleElement text={props?.title?.romaji} f_size={0.9} f_weight={600} />
                     {/* popup on hover */}

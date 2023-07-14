@@ -6,12 +6,11 @@ export type CardsProps = {
 };
 
 const Cards = ({ data }: { data: CardProps[] }) => {
-    console.log(data)
     return (
         <div className={css`
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-            gap: 2.5rem 0rem;
+            gap: 2.5rem 0.2rem;
             margin: 1rem 0;
             grid-auto-rows: dense;
             width: 100%;

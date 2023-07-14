@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['https://graphql.anilist.co', 's4.anilist.co'],
   },
+  compiler: {
+    removeConsole: false,
+  },
 }
 
 module.exports = nextConfig
