@@ -10,16 +10,19 @@ const Cards = ({ data }: { data: CardProps[] }) => {
     return (
         <div className={css`
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+            gap: 2.5rem 0rem;
             margin: 1rem 0;
             grid-auto-rows: dense;
+            width: 100%;
+            padding: 0;
 
             // first card full width
             & > :first-child {
                 grid-column: 1 / -1;
                 
                 & > [data-name="card"] {
+                    width: 100%;
                     &:hover {
                         transform: none;
                         background-color: transparent;
@@ -27,7 +30,7 @@ const Cards = ({ data }: { data: CardProps[] }) => {
                 }
 
                 & > div > [data-name="card-header"] {
-                    max-height: 50vh;
+                    height: 50vh;
                     border-radius: 0;
                     &:after {
                         background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 50%);

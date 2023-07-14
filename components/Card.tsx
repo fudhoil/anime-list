@@ -3,8 +3,9 @@ import Link from "next/link";
 import { css } from '@emotion/css';
 import parse from "html-react-parser";
 import TitleElement from "./elements/TitleElement";
-import DescriptionElement from "./elements/DescriptionElement";
 import SmallDetailElement from "./elements/SmallDetailElement";
+import { use, useEffect, useRef, useState } from "react";
+import PopupDescriptionElement from "./PopupDescriptionElement";
 
 export type CardProps = {
     id: number;
@@ -45,24 +46,20 @@ export type CardProps = {
 };
 
 const card_css = css`
-padding: 10px;
+padding: 5px;
 border-radius: 5px;
 display: flex;
 height: 100%;
 flex-direction: column;
 gap: 1rem;
 cursor: pointer;
+width: 11rem;
+justify-content: space-between;
 
 &:hover {
-    transform: scale(1.02);
     transition: all 0.2s ease-in-out;
     background-color: #111;
-
-    // h3 {
-    //     display: -webkit-box;
-    // -webkit-line-clamp: 3;
-    // -webkit-box-orient: vertical;
-    // }
+}
 `
 
 const card_header_css = css`
@@ -70,7 +67,7 @@ width: 100%;
 border-radius: 5px;
 overflow: hidden;
 position: relative;
-max-height: 350px;
+height: 14rem;
 transition: all 0.2s ease-in-out;
 
 &:after {
@@ -88,41 +85,56 @@ const card_footer_css = css`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
-gap: 1rem;
 align-items: end;
 `
 
 const Card = (props: CardProps) => {
+    const [showDescription, setShowDescription] = useState(false)
+    const ref = useRef<HTMLDivElement>(null)
+    const [isLeft, setIsLeft] = useState(false)
+
+    // check if the card is located on the very left side of the screen
+    const isLeftSide = () => {
+        if (ref.current) {
+            return ref.current.getBoundingClientRect().left < 50
+        }
+        return false
+    }
+
+    useEffect(() => {
+        console.log(isLeftSide())
+        setIsLeft(isLeftSide())
+    }, [isLeft, ref])
+
     return (
-        <Link href={`anime/${props?.title?.english}`} className={css`position: relative;`}>
-            <div className={card_css} data-name="card">
+        <Link href={`anime/${props?.title?.english}`} className={css`
+        position: relative;
+        `}
+            onMouseEnter={() => setShowDescription(true)}
+            onMouseLeave={() => setShowDescription(false)}>
+            <div className={card_css} data-name="card" ref={ref}>
                 <div className={card_header_css} data-name="card-header">
                     <Image src={props?.coverImage?.extraLarge} alt={props?.title?.romaji} layout="responsive" width={300} height={300} />
                 </div>
-                <TitleElement text={props?.title?.romaji} />
-                <DescriptionElement text={props?.description} />
+                <TitleElement text={props?.title?.romaji} f_size={0.9} f_weight={600} />
+                {/* popup on hover */}
+                {showDescription && (
+                    <PopupDescriptionElement content={props} isLeft={isLeft} />
+                )}
                 <div className={card_footer_css}>
                     <div>
                         <SmallDetailElement text={props?.startDate?.year} />
                         {' | '}
-                        <SmallDetailElement text={props?.duration + " min"} />
+                        <SmallDetailElement text={props?.episodes ? "EP " + props?.episodes : ""} />
                     </div>
 
                     <div className={css`
                         display: flex;
                         flex-direction: column;
-                        gap: 0.5rem;
-                        align-items: flex-end;
+                        gap: 0.4rem;
+                        padding: 0.1rem;
                     `}>
-                        <SmallDetailElement text={props?.genres[0] + ", " + props?.genres[1]} />
-                        <div className={css`
-                            display: flex;
-                            flex-direction: row;
-                            gap: 0.5rem;
-                            align-items: center;
-                        `}>
-                            <SmallDetailElement text={"EP " + props?.episodes} />
-                        </div>
+                        <SmallDetailElement text={props?.genres[0]} />
                     </div>
                 </div>
             </div>
