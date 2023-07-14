@@ -52,25 +52,6 @@ const PopupDescriptionElement = ({ content, isLeft }: { content: CardProps, isLe
                 </div>
                 <TitleElement text={content?.title?.romaji} f_size={0.9} f_weight={600} />
                 <DescriptionElement text={content?.description} clamp={isMobile ? 3 : 5} />
-
-                {/* button add to collection */}
-                <button className={css`
-                    padding: 0.5rem 1rem;
-                border-radius: 5px;
-                background-color: #333;
-                color: #fff;
-                border: 1px solid #333;
-                cursor: pointer;
-                transition: all 0.2s ease-in-out;
-                outline: none;
-
-                &:hover {
-                    background - color: #111;
-                border: 1px solid #fff;
-                    }
-                `}>
-                    Add to collection
-                </button>
             </div>
         </div >
     )

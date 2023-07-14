@@ -21,7 +21,7 @@ const Cards = ({ data }: { data: CardProps[] }) => {
             & > :first-child {
                 grid-column: 1 / -1;
                 
-                & > [data-name="card"] {
+                & [data-name="card"] {
                     width: 100%;
                     &:hover {
                         transform: none;
@@ -29,7 +29,7 @@ const Cards = ({ data }: { data: CardProps[] }) => {
                     }
                 }
 
-                & > div > [data-name="card-header"] {
+                & [data-name="card-header"] {
                     height: 50vh;
                     border-radius: 0;
                     &:after {
@@ -37,15 +37,15 @@ const Cards = ({ data }: { data: CardProps[] }) => {
                     }
                 }
 
-                & > div > [data-name="title"] {
+                & [data-name="title"] {
                     font-size: 2.5rem;
                 }
 
-                & > div > [data-name="popup"] {
+                & [data-name="popup"] {
                     display: none;
                 }
                 
-                & > div > [data-name="description"] {
+                & [data-name="description"] {
                     -webkit-line-clamp: 5;
                 }
             }

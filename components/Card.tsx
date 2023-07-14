@@ -107,40 +107,124 @@ const Card = (props: CardProps) => {
     }, [isLeft, ref])
 
     return (
-        <Link href={`anime/${props?.title?.english}`} className={css`
+        <div className={css`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+        padding: 1rem 0.25rem;
+        `}>
+            <Link href={`anime/${props?.title?.english}`} className={css`
         position: relative;
         `}
-            onMouseEnter={() => setShowDescription(true)}
-            onMouseLeave={() => setShowDescription(false)}>
-            <div className={card_css} data-name="card" ref={ref}>
-                <div className={card_header_css} data-name="card-header">
-                    <Image src={props?.coverImage?.extraLarge} alt={props?.title?.romaji} layout="responsive" width={300} height={300} />
-                </div>
-                <TitleElement text={props?.title?.romaji} f_size={0.9} f_weight={600} />
-                {/* popup on hover */}
-                <div data-name="popup">
-                    {showDescription && (
-                        <PopupDescriptionElement content={props} isLeft={isLeft} />
-                    )}
-                </div>
-                <div className={card_footer_css}>
-                    <div>
-                        <SmallDetailElement text={props?.startDate?.year} />
-                        {' | '}
-                        <SmallDetailElement text={props?.episodes ? "EP " + props?.episodes : ""} />
+                onMouseEnter={() => setShowDescription(true)}
+                onMouseLeave={() => setShowDescription(false)}>
+                <div className={card_css} data-name="card" ref={ref}>
+                    <div className={card_header_css} data-name="card-header">
+                        <Image src={props?.coverImage?.extraLarge} alt={props?.title?.romaji} layout="responsive" width={300} height={300} />
+                    </div>
+                    <TitleElement text={props?.title?.romaji} f_size={0.9} f_weight={600} />
+                    {/* popup on hover */}
+                    <div data-name="popup" className={css`
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    transition: all 0.2s ease-in-out;
+                    opacity: ${showDescription ? 1 : 0};
+                    visibility: ${showDescription ? "visible" : "hidden"};
+                    z-index: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1rem;
+                    background-color: #111;
+                `}>
+                        {showDescription && (
+                            <PopupDescriptionElement content={props} isLeft={isLeft} />
+                        )}
                     </div>
 
-                    <div className={css`
+                    {props?.reviews?.nodes[0]?.rating && (
+                        <div className={css`
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        position: absolute;
+                        top: 0.5rem;
+                        right: 0.5rem;
+                        z-index: 2;
+                        background-color: #111;
+                        padding: 0.5rem;
+                        border-radius: 5px;
+                    `}>
+
+                            <div className={css`
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+                        `}>
+                                <svg className={css`
+                            width: 1.2rem;
+                            height: 1.2rem;
+                            fill: #f1c40f;
+                            margin-right: 0.5rem;
+                        `} viewBox="0 0 24 24">
+                                    <path d="M12 2.5L9.5 8.5H2.5L8.5 13.5L6.5 20.5L12 15L17.5 20.5L15.5 13.5L21.5 8.5H14.5L12 2.5Z" />
+                                </svg>
+                                <span className={css`
+                                font-size: 0.8rem;
+                                font-weight: 600;
+                            `}>{props?.reviews?.nodes[0]?.rating}</span>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className={card_footer_css}>
+                        <div>
+                            <SmallDetailElement text={props?.startDate?.year} />
+                            {' | '}
+                            <SmallDetailElement text={props?.episodes ? "EP " + props?.episodes : ""} />
+                        </div>
+
+                        <div className={css`
                         display: flex;
                 flex-direction: column;
                 gap: 0.4rem;
                 padding: 0.1rem;
                     `}>
-                        <SmallDetailElement text={props?.genres[0]} />
+                            <SmallDetailElement text={props?.genres[0]} />
+                        </div>
                     </div>
-                </div>
-            </div >
-        </Link >
+                </div >
+            </Link>
+            <button className={css`
+                        padding: 0.5rem 1rem;
+                        border-radius: 5px;
+                        background-color: #333;
+                        color: #fff;
+                        border: 1px solid #333;
+                        cursor: pointer;
+                        transition: all 0.2s ease-in-out;
+                        outline: none;
+                        font-size: 0.7rem;
+                        font-weight: 600;
+                        width: 100%;
+
+                        &:hover {
+                            background - color: #111;
+                        border: 1px solid #fff;
+                            }
+                        `}
+                onClick={() => alert("Add to collection")
+                }>
+                Add to collection
+            </button>
+        </div>
     );
 }
 
