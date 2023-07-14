@@ -3,20 +3,20 @@ import { css } from "@emotion/css";
 import Link from "next/link";
 
 const Header = ({ title, subtitle }: { title: string, subtitle: string }) => {
-    const dispatch = useCollectionsDispatch();
-    return (
-        <div className={css`
+  const dispatch = useCollectionsDispatch();
+  return (
+    <div className={css`
           width: 100%;
           display: flex;
           justify-content: space-between;
           align-items: center;
 
         `}>
-            <h1 className={title_css}>
-                {title}
-            </h1>
-            {/* by fudhoil */}
-            <span className={css`
+      <h1 className={title_css}>
+        {title}
+      </h1>
+      {/* by fudhoil */}
+      <span className={css`
           font-size: 1rem;
           font-weight: 400;
           color: #999;
@@ -24,8 +24,8 @@ const Header = ({ title, subtitle }: { title: string, subtitle: string }) => {
           align-items: center;
           gap: 0.5rem;
         `}>
-                <Link href="https://github.com/fudhoil"
-                    className={css`
+        <Link href="https://github.com/fudhoil"
+          className={css`
               text-decoration: underline;
 
               &:hover {
@@ -37,8 +37,8 @@ const Header = ({ title, subtitle }: { title: string, subtitle: string }) => {
               }
             `}>by fudhoil </Link>
 
-                {/* button modal */}
-                <button className={css`
+        {/* button modal */}
+        <button className={css`
             padding: 0.5rem 1rem;
             background-color: #333;
             border: none;
@@ -50,12 +50,16 @@ const Header = ({ title, subtitle }: { title: string, subtitle: string }) => {
               background-color: #444;
             }
 
-          `} onClick={() => dispatch({ type: 'SET_MODAL', modal: true, modalType: 'show_collections' })}>
-                    My Collections
-                </button>
-            </span>
-        </div>
-    )
+          `} onClick={() => {
+            dispatch({ type: 'SET_MODAL', modal: true })
+            dispatch({ type: 'SET_MODAL_CONTENT', modalContent: null })
+            dispatch({ type: 'SET_MODAL_TYPE', modalType: 'show_collections' })
+          }}>
+          My Collections
+        </button>
+      </span>
+    </div>
+  )
 }
 
 const title_css = css`
