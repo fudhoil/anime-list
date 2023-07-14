@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { gql, useQuery } from '../lib/graphql'
+import { gql, useQuery } from '../lib/apolloClient'
 import Cards from '@/components/Cards'
 import { css } from '@emotion/css'
 import Link from 'next/link'

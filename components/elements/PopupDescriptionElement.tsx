@@ -1,9 +1,9 @@
 import { css } from "@emotion/css";
-import DescriptionElement from "./elements/DescriptionElement";
+import DescriptionElement from "./DescriptionElement";
 import { useEffect, useState } from "react";
-import { CardProps } from "./Card";
-import TitleElement from "./elements/TitleElement";
-import SmallDetailElement from "./elements/SmallDetailElement";
+import { CardProps } from "../Card";
+import TitleElement from "./TitleElement";
+import SmallDetailElement from "./SmallDetailElement";
 
 const PopupDescriptionElement = ({ content, isLeft }: { content: CardProps, isLeft: boolean }) => {
     const [isMobile, setIsMobile] = useState(false)

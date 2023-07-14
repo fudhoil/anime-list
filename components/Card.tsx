@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import TitleElement from "./elements/TitleElement";
 import SmallDetailElement from "./elements/SmallDetailElement";
 import { use, useEffect, useRef, useState } from "react";
-import PopupDescriptionElement from "./PopupDescriptionElement";
+import PopupDescriptionElement from "./elements/PopupDescriptionElement";
 
 export type CardProps = {
     id: number;

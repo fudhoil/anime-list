@@ -1,0 +1,131 @@
+type Anime {
+    Page: Page
+}
+
+type Page {
+    pageInfo: PageInfo
+    media: [Media]
+}
+
+type PageInfo {
+    total: Int
+    perPage: Int
+    currentPage: Int
+    lastPage: Int
+    hasNextPage: Boolean
+}
+
+type Media {
+    id: Int
+    title: Title
+    coverImage: CoverImage
+    description: String
+    episodes: Int
+    genres: [String]
+    averageScore: Int
+    popularity: Int
+    siteUrl: String
+    isAdult: Boolean
+    nextAiringEpisode: NextAiringEpisode
+    streamingEpisodes: [StreamingEpisode]
+    studios: [Studio]
+    characters: Characters
+    startDate: FuzzyDate
+    endDate: FuzzyDate
+    reviews: Reviews
+}
+
+type Title {
+    romaji: String
+    english: String
+    native: String
+}
+
+type CoverImage {
+    extraLarge: String
+    large: String
+    medium: String
+    color: String
+}
+
+
+type NextAiringEpisode {
+    airingAt: Int
+    timeUntilAiring: Int
+    episode: Int
+}
+
+type StreamingEpisode {
+    title: String
+    thumbnail: String
+    url: String
+    site: String
+}
+
+type Studio {
+    name: String
+}
+
+type Characters {
+    edges: [CharacterEdge]
+}
+
+type CharacterEdge {
+    node: Character
+}
+
+type Character {
+    id: Int
+    name: Name
+    image: Image
+}
+
+type Name {
+    full: String
+}
+
+type Image {
+    large: String
+    medium: String
+    extraLarge: String
+}
+
+type FuzzyDate {
+    year: Int
+    month: Int
+    day: Int
+}
+
+type Reviews {
+    nodes: [Review]
+}
+
+type Review {
+    id: Int
+    summary: String
+    body: String
+    rating: Int
+    ratingAmount: Int
+    user: User
+}
+
+type User {
+    id: Int
+    name: String
+    avatar: Avatar
+}
+
+type Avatar {
+    large: String
+    medium: String
+}
+
+type Query {
+    anime(id: Int): Anime
+    searchAnime(search: String, page: Int): Anime
+}
+
+schema {
+    query: Query
+}
+```
