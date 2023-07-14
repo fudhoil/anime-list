@@ -88,6 +88,25 @@ justify-content: space-between;
 align-items: end;
 `
 
+const button_css = css`
+padding: 0.5rem 1rem;
+border-radius: 5px;
+background-color: #333;
+color: #fff;
+border: 1px solid #333;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+outline: none;
+font-size: 0.7rem;
+font-weight: 600;
+width: 100%;
+
+&:hover {
+    background - color: #111;
+border: 1px solid #fff;
+    }
+`
+
 const Card = (props: CardProps) => {
     const [showDescription, setShowDescription] = useState(false)
     const ref = useRef<HTMLDivElement>(null)
@@ -199,24 +218,7 @@ const Card = (props: CardProps) => {
                     </div>
                 </div >
             </Link>
-            <button className={css`
-                        padding: 0.5rem 1rem;
-                        border-radius: 5px;
-                        background-color: #333;
-                        color: #fff;
-                        border: 1px solid #333;
-                        cursor: pointer;
-                        transition: all 0.2s ease-in-out;
-                        outline: none;
-                        font-size: 0.7rem;
-                        font-weight: 600;
-                        width: 100%;
-
-                        &:hover {
-                            background - color: #111;
-                        border: 1px solid #fff;
-                            }
-                        `}
+            <button className={button_css}
                 onClick={() => alert("Add to collection")
                 }>
                 Add to collection
