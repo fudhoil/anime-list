@@ -6,6 +6,7 @@ import TitleElement from "./elements/TitleElement";
 import SmallDetailElement from "./elements/SmallDetailElement";
 import { use, useEffect, useRef, useState } from "react";
 import PopupDescriptionElement from "./elements/PopupDescriptionElement";
+import { useCollections, useCollectionsDispatch } from "@/contexts/CollectionsContext";
 
 export type CardProps = {
     id: number;
@@ -111,6 +112,8 @@ const Card = (props: CardProps) => {
     const [showDescription, setShowDescription] = useState(false)
     const ref = useRef<HTMLDivElement>(null)
     const [isLeft, setIsLeft] = useState(false)
+    const collections = useCollections()
+    const dispatch = useCollectionsDispatch()
 
     // check if the card is located on the very left side of the screen
     const isLeftSide = () => {
@@ -133,9 +136,20 @@ const Card = (props: CardProps) => {
         margin: 0 auto;
         padding: 1rem 0.25rem;
         `}>
-            <Link href={`anime/${props?.title?.english}`} className={css`
-        position: relative;
-        `}
+            <button className={css`
+                position: relative;
+                // reset button styles
+                padding: 0;
+                border: none;
+                background: none;
+                outline: none;
+                cursor: pointer;
+                `}
+                onClick={() => {
+                    dispatch({ type: "SET_MODAL", modal: true });
+                    dispatch({ type: "SET_MODAL_CONTENT", modalContent: props });
+                    dispatch({ type: "SET_MODAL_TYPE", modalType: "show_details" });
+                }}
                 onMouseEnter={() => setShowDescription(true)}
                 onMouseLeave={() => setShowDescription(false)}>
                 <div className={card_css} data-name="card" ref={ref}>
@@ -216,10 +230,13 @@ const Card = (props: CardProps) => {
                         </div>
                     </div>
                 </div >
-            </Link>
+            </button>
             <button className={button_css}
-                onClick={() => alert("Add to collection")
-                }>
+                onClick={() => {
+                    dispatch({ type: "SET_MODAL", modal: true });
+                    dispatch({ type: "SET_MODAL_CONTENT", modalContent: props });
+                    dispatch({ type: "SET_MODAL_TYPE", modalType: "add_to_collection" });
+                }}>
                 Add to collection
             </button>
         </div>

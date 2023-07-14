@@ -6,6 +6,10 @@ import { css } from '@emotion/css'
 import Link from 'next/link'
 import { use, useEffect, useState } from 'react'
 import PaginationElement from '@/components/elements/PaginationElement'
+import Modal from '@/components/Modal'
+import { useCollections, useCollectionsDispatch } from '@/contexts/CollectionsContext'
+import CardsSkeleton from '@/components/elements/skeleton/CardsSkeleton'
+import Header from '@/components/elements/Header'
 
 // anilist
 const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
@@ -63,15 +67,12 @@ const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
   )
 }
 
-const title_css = css`
-font-size: 2rem;
-margin: 2rem 0;
-`
-
 export default function Home() {
   const [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(20)
+  const [perPage, setPerPage] = useState(10)
   const [lastPage, setLastPage] = useState(1)
+  const collections = useCollections()
+  const dispatch = useCollectionsDispatch()
 
   const [query, setQuery] = useState(anime_list({ page, perPage }))
 
@@ -98,32 +99,7 @@ export default function Home() {
         padding: 1rem 1rem;
         color: #fafafa;
       `}>
-        <div className={css`
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-        `}>
-          <h1 className={title_css}>
-            Anime List
-          </h1>
-          {/* by fudhoil */}
-          <span className={css`
-          font-size: 1rem;
-          font-weight: 400;
-          color: #999;
-        `}>
-            by <Link href="https://github.com/fudhoil"
-              className={css`
-              text-decoration: underline;
-
-              &:hover {
-                color: #fff;
-              }
-            `}>fudhoil </Link>
-          </span>
-        </div>
+        <Header title="Anime List" subtitle="List of all anime" />
         {/* line */}
         <div className={css`
           width: 100%;
@@ -132,11 +108,16 @@ export default function Home() {
           margin-bottom: 2rem;
         `} />
         {loading &&
-          <p>Loading...</p>
+          <CardsSkeleton count={perPage} />
         }
 
         <Cards data={data?.Page?.media} />
       </div >
+
+      {/* modal */}
+      <Modal open={collections?.state?.modal} setOpen={dispatch}>
+        {/* showing all collections */}
+      </Modal>
 
       {/* pagination */}
       <PaginationElement page={page} setPage={setPage} lastPage={lastPage} setQuery={setQuery} list={anime_list} perPage={perPage} />
