@@ -112,7 +112,13 @@ const Card = (props: CardProps) => {
     const [showDescription, setShowDescription] = useState(false)
     const ref = useRef<HTMLDivElement>(null)
     const [isLeft, setIsLeft] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
     const dispatch = useCollectionsDispatch()
+
+    useEffect(() => {
+        setIsMobile(window.innerWidth < 768)
+    }, [])
+
 
     // check if the card is located on the very left side of the screen
     const isLeftSide = () => {
@@ -149,7 +155,7 @@ const Card = (props: CardProps) => {
                     dispatch({ type: "SET_MODAL_CONTENT", modalContent: props });
                     dispatch({ type: "SET_MODAL_TYPE", modalType: "show_details" });
                 }}
-                onMouseEnter={() => setShowDescription(true)}
+                onMouseEnter={() => !isMobile && setShowDescription(true)}
                 onMouseLeave={() => setShowDescription(false)}>
                 <div className={card_css} data-name="card" ref={ref}>
                     <div className={card_header_css} data-name="card-header">

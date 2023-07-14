@@ -58,8 +58,8 @@ const Modal = () => {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        min-width: 50vh;
-                        max-width: 50vh;
+                        min-width: isMobile ? 100% : 50vh;
+                        max-width: isMobile ? 100% : 50vh;
                         margin: 0 auto;
                         `}>
                                 <Image src={modalContent?.coverImage?.large} alt={modalContent?.title?.romaji} layout="responsive" width={300} height={300} />
