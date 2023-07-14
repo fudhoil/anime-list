@@ -127,40 +127,37 @@ const Card = (props: CardProps) => {
                     <TitleElement text={props?.title?.romaji} f_size={0.9} f_weight={600} />
                     {/* popup on hover */}
                     <div data-name="popup" className={css`
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    transition: all 0.2s ease-in-out;
-                    opacity: ${showDescription ? 1 : 0};
-                    visibility: ${showDescription ? "visible" : "hidden"};
-                    z-index: 1;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 1rem;
-                    background-color: #111;
-                `}>
-                        {showDescription && (
-                            <PopupDescriptionElement content={props} isLeft={isLeft} />
-                        )}
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        transition: all 0.2s ease-in-out;
+                        opacity: ${showDescription ? 1 : 0};
+                        visibility: ${showDescription ? "visible" : "hidden"};
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 1rem;
+                        height: 100%;
+                    `}>
+                        <PopupDescriptionElement content={props} isLeft={isLeft} />
                     </div>
 
                     {props?.reviews?.nodes[0]?.rating && (
                         <div className={css`
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: space-between;
-                        align-items: center;
-                        position: absolute;
-                        top: 0.5rem;
-                        right: 0.5rem;
-                        z-index: 2;
-                        background-color: #111;
-                        padding: 0.5rem;
-                        border-radius: 5px;
-                    `}>
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+                            position: absolute;
+                            top: 0.5rem;
+                            right: 0.5rem;
+                            z-index: 2;
+                            background-color: #111;
+                            padding: 0.5rem;
+                            border-radius: 5px;
+                        `}>
 
                             <div className={css`
                             display: flex;
