@@ -119,7 +119,9 @@ const Card = (props: CardProps) => {
                 <TitleElement text={props?.title?.romaji} f_size={0.9} f_weight={600} />
                 {/* popup on hover */}
                 {showDescription && (
-                    <PopupDescriptionElement content={props} isLeft={isLeft} />
+                    <div data-name="popup">
+                        <PopupDescriptionElement content={props} isLeft={isLeft} />
+                    </div>
                 )}
                 <div className={card_footer_css}>
                     <div>
@@ -130,14 +132,14 @@ const Card = (props: CardProps) => {
 
                     <div className={css`
                         display: flex;
-                        flex-direction: column;
-                        gap: 0.4rem;
-                        padding: 0.1rem;
+                flex-direction: column;
+                gap: 0.4rem;
+                padding: 0.1rem;
                     `}>
                         <SmallDetailElement text={props?.genres[0]} />
                     </div>
                 </div>
-            </div>
+            </div >
         </Link >
     );
 }

@@ -77,7 +77,7 @@ export default function Home() {
         align-items: center;
         width: 100%;
         margin: 0 auto;
-        padding: 0 1rem;
+        padding: 1rem 1rem;
         color: #fafafa;
       `}>
         <div className={css`

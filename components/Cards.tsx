@@ -36,9 +36,15 @@ const Cards = ({ data }: { data: CardProps[] }) => {
                         background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 50%);
                     }
                 }
+
                 & > div > [data-name="title"] {
                     font-size: 2.5rem;
                 }
+
+                & > div > [data-name="popup"] {
+                    display: none;
+                }
+                
                 & > div > [data-name="description"] {
                     -webkit-line-clamp: 5;
                 }
