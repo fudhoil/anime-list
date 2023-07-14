@@ -17,8 +17,8 @@ const PopupDescriptionElement = ({ content, isLeft }: { content: CardProps, isLe
     return (
         <div className={css`
             position: absolute;
-            width: 110%;
-            height: ${isMobile ? "100%" : "90%"};
+            width: ${isMobile ? "99%" : "110%"};
+            height: ${isMobile ? "fit-content" : "90%"};
             overflow: auto;
             padding: 1rem;
             box-sizing: border-box;
@@ -51,7 +51,7 @@ const PopupDescriptionElement = ({ content, isLeft }: { content: CardProps, isLe
                     <SmallDetailElement text={content?.episodes ? "EP " + content?.episodes : ""} />
                 </div>
                 <TitleElement text={content?.title?.romaji} f_size={0.9} f_weight={600} />
-                <DescriptionElement text={content?.description} clamp={isMobile ? 0 : 5} />
+                <DescriptionElement text={content?.description} clamp={isMobile ? 3 : 5} />
 
                 {/* button add to collection */}
                 <button className={css`
