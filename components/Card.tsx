@@ -118,11 +118,11 @@ const Card = (props: CardProps) => {
                 </div>
                 <TitleElement text={props?.title?.romaji} f_size={0.9} f_weight={600} />
                 {/* popup on hover */}
-                {showDescription && (
-                    <div data-name="popup">
+                <div data-name="popup">
+                    {showDescription && (
                         <PopupDescriptionElement content={props} isLeft={isLeft} />
-                    </div>
-                )}
+                    )}
+                </div>
                 <div className={card_footer_css}>
                     <div>
                         <SmallDetailElement text={props?.startDate?.year} />
