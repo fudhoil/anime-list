@@ -72,7 +72,6 @@ export default function Home() {
   const [perPage, setPerPage] = useState(10)
   const [lastPage, setLastPage] = useState(1)
   const collections = useCollections()
-  const dispatch = useCollectionsDispatch()
 
   const [query, setQuery] = useState(anime_list({ page, perPage }))
 
@@ -115,9 +114,7 @@ export default function Home() {
       </div >
 
       {/* modal */}
-      <Modal open={collections?.state?.modal} setOpen={dispatch}>
-        {/* showing all collections */}
-      </Modal>
+      <Modal />
 
       {/* pagination */}
       <PaginationElement page={page} setPage={setPage} lastPage={lastPage} setQuery={setQuery} list={anime_list} perPage={perPage} />

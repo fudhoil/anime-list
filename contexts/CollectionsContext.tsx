@@ -10,13 +10,7 @@ export const collectionsInitialState = {
     modalType: null,
 };
 
-export const CollectionsContext = createContext<{
-    state: any;
-    dispatch: any;
-}>({
-    state: collectionsInitialState,
-    dispatch: () => null
-});
+export const CollectionsContext = createContext<any>(null);
 
 export const CollectionsDispatchContext = createContext<any>(null);
 export const CollectionsProvider = ({ children }: any) => {

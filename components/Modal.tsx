@@ -1,16 +1,16 @@
-import { useCollections, useCollectionsDispatch } from "@/contexts/CollectionsContext";
+import { useCollections } from "@/contexts/CollectionsContext";
 import { css } from "@emotion/css";
 import ModalBase from "./elements/ModalBase";
 import Image from "next/image";
 import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 
-const Modal = ({ children, open, setOpen }: { children: any, open: boolean, setOpen: any }) => {
+const Modal = () => {
     const [isMobile, setIsMobile] = useState(false);
     const collections = useCollections();
-    const dispatch = useCollectionsDispatch();
-    const modalType = collections?.state?.modalType;
-    const modalContent = collections?.state?.modalContent;
+    const modal = collections?.modal;
+    const modalType = collections?.modalType;
+    const modalContent = collections?.modalContent;
 
     useEffect(() => {
         if (window.innerWidth < 768) {
@@ -21,7 +21,7 @@ const Modal = ({ children, open, setOpen }: { children: any, open: boolean, setO
     }, []);
 
     return (
-        <ModalBase open={open} setOpen={setOpen}>
+        <ModalBase open={modal}>
             <div className={css`
                 display: flex;
                 flex-direction: column;

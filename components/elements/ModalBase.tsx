@@ -1,6 +1,8 @@
+import { useCollectionsDispatch } from "@/contexts/CollectionsContext";
 import { css } from "@emotion/css";
 
-const ModalBase = ({ children, open, setOpen }: { children: any, open: boolean, setOpen: any }) => {
+const ModalBase = ({ children, open }: { children: any, open: boolean }) => {
+    const dispatch = useCollectionsDispatch();
     return (
         <div className={css`
         position: fixed;
@@ -36,7 +38,7 @@ const ModalBase = ({ children, open, setOpen }: { children: any, open: boolean, 
                 color: #fafafa;
                 cursor: pointer;
                 border-radius: 0 5px 0 5px;
-            `} onClick={() => setOpen({ type: 'SET_MODAL', modal: false })}>
+            `} onClick={() => dispatch({ type: 'SET_MODAL', modal: false })}>
                     <svg xmlns="http://www.w3.org/2000/svg" className={css`
                     width: 1rem;
                     height: 1rem;

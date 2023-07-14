@@ -112,7 +112,6 @@ const Card = (props: CardProps) => {
     const [showDescription, setShowDescription] = useState(false)
     const ref = useRef<HTMLDivElement>(null)
     const [isLeft, setIsLeft] = useState(false)
-    const collections = useCollections()
     const dispatch = useCollectionsDispatch()
 
     // check if the card is located on the very left side of the screen
