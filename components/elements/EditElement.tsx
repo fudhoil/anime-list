@@ -31,12 +31,17 @@ const EditElement = ({
                 gap: 1rem;
                 `}>
                 <input type="text" className={css`
-                width: 100%;
-                padding: 0.5rem 1rem;
-                border-radius: 5px;
-                border: 1px solid #333;
-                background-color: #fafafa;
-                color: #333;
+                 width: 100%;
+                 padding: 0.5rem 1rem;
+                 border-radius: 2px;
+                 border: none;
+                 outline: none;
+                 font-size: 0.75rem;
+                 font-weight: 300;
+                 line-height: 1.5;
+                 background-color: #333;
+                 // text color inside input
+                 color: #fff;
                 `} value={editCollectionName} onChange={(e) => handleEdit(e)} 
                 // if not focused, then set editCollectionId to null
 
