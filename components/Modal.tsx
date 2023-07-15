@@ -214,7 +214,7 @@ const Modal = () => {
                                             }
                                             dispatch({ type: 'SET_COLLECTIONS', newCollections: { title: newCollectionName, media: [] } });
                                             setNewCollectionName('');
-                                            localStorage.setItem('collections', JSON.stringify([...collections]));
+                                            localStorage.setItem('collections', JSON.stringify([...collections, { title: newCollectionName, media: [] }]));
                                         }}
                                         disabled={error?.length > 0 || newCollectionName?.length < 1}
                                     > Create</button>
@@ -330,7 +330,7 @@ const Modal = () => {
                                         }
                                         dispatch({ type: 'SET_COLLECTIONS', newCollections: { title: newCollectionName, media: [] } });
                                         setNewCollectionName('');
-                                        localStorage.setItem('collections', JSON.stringify([...collections]));
+                                        localStorage.setItem('collections', JSON.stringify([...state?.collections, { title: newCollectionName, media: [] }]));
                                     }}
                                     disabled={error?.length > 0 || newCollectionName?.length < 1}
                                 > Create</button>
@@ -428,12 +428,12 @@ const Modal = () => {
                                                 if (selectedCollections?.includes(collection.title)) {
                                                     if (!collection?.media?.find((media: any) => media.id === modalContent.id)) {
                                                         collection.media = [...collection?.media, modalContent];
+                                                        localStorage.setItem('collections', JSON.stringify([...state?.collections, { title: newCollectionName, media: [] }]));
                                                     }
                                                 } else {
                                                     collection.media = collection?.media.filter((media: any) => media.id !== modalContent.id);
                                                 }
                                             });
-                                            localStorage.setItem('collections', JSON.stringify([...collections]));
                                             dispatch({ type: 'CLOSE_MODAL' });
                                         }}
                                     >Save</button>

@@ -27,6 +27,12 @@ export const CollectionsProvider = ({ children }: any) => {
 
 export const collectionsReducer = (state: any, action: any) => {
     switch (action.type) {
+        case 'SET_ALL_COLLECTIONS':
+            const allCollections = action.allCollections;
+                return {
+                    ...state,
+                    collections: allCollections
+                };
         case 'SET_COLLECTIONS':
             const newCollections = action.newCollections;
             if (newCollections !== null) {

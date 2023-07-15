@@ -1,9 +1,23 @@
 import { css } from "@emotion/css";
 import Header from "./elements/Header";
 import Modal from "./Modal";
+import { useCollections, useCollectionsDispatch } from "@/contexts/CollectionsContext";
+import { useEffect } from "react";
 
 const Layout = (props: any) => {
     const { children } = props
+    const dispatch = useCollectionsDispatch()
+  const { collections} = useCollections()
+
+  useEffect(() => {
+    const local: any = localStorage.getItem('collections')
+    if (local?.length > 0) {
+        dispatch({ type: 'SET_ALL_COLLECTIONS', allCollections: JSON.parse(local) })
+      } else {
+        dispatch({ type: 'REMOVE_ALL_COLLECTIONS' })
+    }
+  }, [dispatch])
+
     return (
         <div className={css`
         display: flex;

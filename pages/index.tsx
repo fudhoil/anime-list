@@ -69,15 +69,6 @@ export default function Home() {
   const { collections, collection, collection_id, modal, modalContent, modalType } = useCollections()
 
   useEffect(() => {
-    const local: any = localStorage.getItem('collections')
-    if (local?.[0]?.title) {
-        dispatch({ type: 'SET_COLLECTIONS', newCollections: JSON.parse(local) })
-      } else {
-        dispatch({ type: 'REMOVE_ALL_COLLECTIONS' })
-    }
-  }, [dispatch])
-
-  useEffect(() => {
     if (data?.Page?.pageInfo?.lastPage) {
       setLastPage(data?.Page?.pageInfo?.lastPage)
     }
