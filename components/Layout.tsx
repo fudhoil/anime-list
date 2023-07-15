@@ -3,6 +3,8 @@ import Header from "./elements/Header";
 import Modal from "./Modal";
 import { useCollections, useCollectionsDispatch } from "@/contexts/CollectionsContext";
 import { useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = (props: any) => {
     const { children } = props
@@ -40,6 +42,7 @@ const Layout = (props: any) => {
             {/* <Footer /> */}
             {/* modal */}
             <Modal />
+            <ToastContainer />
         </div>
     )
 }

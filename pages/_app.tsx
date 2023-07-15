@@ -5,6 +5,8 @@ import { ApolloProvider, client } from '../lib/apolloClient'
 import { CollectionsProvider } from '@/contexts/CollectionsContext'
 import { ReactNode } from 'react'
 import { NextPage } from 'next'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Page<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactNode) => ReactNode;

@@ -5,6 +5,9 @@ import Image from "next/image";
 import parse from "html-react-parser";
 import { SetStateAction, use, useEffect, useState } from "react";
 import Case2 from "./elements/Case2";
+import { toast } from "react-toastify";
+import Case1 from "./elements/Case1";
+import Case3 from "./elements/Case3";
 
 const Modal = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -38,43 +41,38 @@ const Modal = () => {
 
     const handleChange = (e: any) => {
         const value = e.target.value;
-        if (value.length > 0) {
-            if (value.length > 50) {
-                setError('Collection title is too long.');
-            } else {
-                setError('');
-            }
-            // if value is exist in collections, show error
-            if (collections?.find((collection: any) => collection.title === value)) {
-                setError('Collection title is already exist.');
-            } else {
-                setError('');
-            }
-        } else {
-            setError('');
+        setNewCollectionName(value);
+        const regex = /^[a-zA-Z0-9_ ]*$/;
+        if (!regex.test(value)) {
+            setError('Please enter a valid name');
+            return;
         }
-            setNewCollectionName(value);
+        if (collections?.find((collection: any) => collection?.title === value)) {
+            setError('This name is already exist');
+            return;
+        }
+        setError('');
     }
 
     const handleEdit = (e: any) => {
         const value = e.target.value;
-        if (value.length > 0) {
-            if (value.length > 50) {
-                setErrorEdit('Collection title is too long.');
-            } else {
-                setErrorEdit('');
-            }
-            // if value is exist in collections, show error
-            if (collections?.find((collection: any) => collection.title === value)) {
-                setErrorEdit('Collection title is already exist.');
-            } else {
-                setErrorEdit('');
-            }
+    //    not allow using special characters
+    //  not allow to use the same name
+        setEditCollectionName(value);
+       const regex = /^[a-zA-Z0-9_ ]*$/;
+         if (!regex.test(value)) {
+            setErrorEdit('Please enter a valid name');
+            return;
         } else {
-            setErrorEdit('title is required.');
+            setErrorEdit('');
         }
 
-        setEditCollectionName(value);
+        if (collections?.find((collection: any) => collection?.title === value)) {
+            setErrorEdit('This name is already exist');
+            return;
+        } else {
+            setErrorEdit('');
+        }
     }
 
     const handleSelect = (e: any, title: any) => {
@@ -112,7 +110,7 @@ const Modal = () => {
                 overflow-y: auto;
                 `}>
 
-                {modalType === 'add_to_collection' && (
+                {collections?.length === 0 ? (
                     <div className={css`
                     display: flex;
                     flex-direction: column;
@@ -130,133 +128,48 @@ const Modal = () => {
                         gap: 2rem;
                     }
                     `}>
-                        {/* case 1 */}
-                        {collections?.length < 1 && (
-                            <>
-                                <div className={css`
-                                display: flex;
-                                flex-direction: column;
-                                align-items: start;
-                                width: 100%;
-                                padding: 1rem 0.25rem;
-                                border: none;
-                                gap: 1rem;
+                       {/* case 1 */}
+                        <Case1
+                            collections={collections}
+                            dispatch={dispatch}
+                            modalContent={modalContent}
+                            selectedCollections={selectedCollections}
+                            error={error}
+                            errorEdit={errorEdit}
+                            newCollectionName={newCollectionName}
+                            editCollectionId={editCollectionId}
+                            editCollectionName={editCollectionName}
+                            handleSelect={handleSelect}
+                            handleChange={handleChange}
+                            handleEdit={handleEdit}
+                            setNewCollectionName={setNewCollectionName}
+                            setSelectedCollections={setSelectedCollections}
+                            setEditCollectionId={setEditCollectionId}
+                            setEditCollectionName={setEditCollectionName}
+                            selectChange={selectChange}
+                        />
 
-                                @media (min-width: 768px) {
-                                    width: 200px;
-                                }
-                                `}>
-                                    <div className={css`
-                                    display: flex;
-                                    width: 200px;
-                                    `}>
-                                        <Image src={modalContent?.coverImage?.large} alt={modalContent?.title?.romaji} layout="responsive" width={300} height={300} />
-                                    </div>
-                                    <h2>{modalContent?.title?.romaji}</h2>
-                                    <p className={css`
-                                    font-size: 0.75rem;
-                                    font-weight: 300;
-                                    line-height: 1.5;
-                                    display: -webkit-box;
-                                    -webkit-line-clamp: 3;
-                                    -webkit-box-orient: vertical;
-                                    overflow: hidden;
-                                    `}>
-                                        {parse(modalContent?.description)}</p>
+                    </div>
+                ) : (
+                <>
+                {modalType === "show_collections" && (
+                    <div className={css`
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        width: 100%;
+                        padding: 1rem 0.25rem;
+                        border: none;
+                        gap: 1rem;
+                        height: 100%;
 
-                                    <div className={css`
-                                    display: flex;
-                                    flex-direction: row;
-                                    width: 100%;
-                                    `}>
-                                        <button className={css`
-                                        padding: 0.5rem 1rem;
-                                        border-radius: 5px;
-                                        background-color: #333;
-                                        color: #fff;
-                                        border: none;
-                                        outline: none;
-                                        margin-left: auto;
-                                        width: 100%;
-                                        cursor: pointer;
-
-                                        &:disabled {
-                                            display: none;
-                                        }
-                                        `} disabled>Add</button>
-                                    </div>
-
-                                </div>
-
-                                <div className={css`
-                                display: flex;
-                                flex-direction: column;
-                                align-items: start;
-                                width: 100%;
-                                padding: 1rem 0.25rem;
-                                border: none;
-                                gap: 1rem;
-                                `}>
-                                    {/* note: there is no collection, please create one */}
-                                    <span className={css`
-                                    font-size: 0.75rem;
-                                    font-weight: 300;
-                                    line-height: 1.5;
-                                    display: -webkit-box;
-                                    -webkit-line-clamp: 3;
-                                    -webkit-box-orient: vertical;
-                                    overflow: hidden;
-                                    `}>You don&apos;t have any collection yet, please create one.</span>
-                                    <h2>Create New Collection</h2>
-                                    <input type="text" placeholder="New collection title" className={css`
-                                    width: 100%;
-                                    padding: 0.5rem 1rem;
-                                    border-radius: 5px;
-                                    border: 1px solid #333;
-                                    background-color: #fafafa;
-                                    color: #333;
-                                    `} value={newCollectionName} onChange={(e) => handleChange(e)} />
-                                    {error && (
-                                        <span className={css`
-                                        font-size: 0.75rem;
-                                        font-weight: 300;
-                                        line-height: 1.5;
-                                        display: -webkit-box;
-                                        -webkit-line-clamp: 3;
-                                        -webkit-box-orient: vertical;
-                                        overflow: hidden;
-                                        color: red;
-                                        `}>{error}</span>
-                                    )}
-                                    <button className={css`
-                                    padding: 0.5rem 1rem;
-                                    border-radius: 5px;
-                                    background-color: #333;
-                                    color: #fff;
-                                    border: none;
-                                    outline: none;
-                                    margin-left: auto;
-                                    cursor: pointer;
-
-                                    &:disabled {
-                                        display: none;
-                                    }
-                                    `}
-                                        onClick={() => {
-                                            if (error) {
-                                                return;
-                                            }
-                                            dispatch({ type: 'SET_COLLECTIONS', newCollections: { title: newCollectionName, media: [] } });
-                                            setNewCollectionName('');
-                                            localStorage.setItem('collections', JSON.stringify([...collections, { title: newCollectionName, media: [] }]));
-                                        }}
-                                        disabled={error?.length > 0 || newCollectionName?.length < 1}
-                                    > Create</button>
-                                </div>
-                            </>
-                        )}
-
-                        {/* case 2 */}
+                        @media (min-width: 768px) {
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 2rem;
+                        }
+                        `}>
                         <Case2
                             collections={collections}
                             dispatch={dispatch}
@@ -277,6 +190,30 @@ const Modal = () => {
                             selectChange={selectChange}
                         />
                     </div>
+                )}
+
+                {modalType === "edit" && (
+                    <Case3
+                        collections={collections}
+                        dispatch={dispatch}
+                        modalContent={modalContent}
+                        selectedCollections={selectedCollections}
+                        error={error}
+                        errorEdit={errorEdit}
+                        newCollectionName={newCollectionName}
+                        editCollectionId={editCollectionId}
+                        editCollectionName={editCollectionName}
+                        handleSelect={handleSelect}
+                        handleChange={handleChange}
+                        handleEdit={handleEdit}
+                        setNewCollectionName={setNewCollectionName}
+                        setSelectedCollections={setSelectedCollections}
+                        setEditCollectionId={setEditCollectionId}
+                        setEditCollectionName={setEditCollectionName}
+                        selectChange={selectChange}
+                    />
+                )}
+                </>
                 )}
             </div>
         </ModalBase >

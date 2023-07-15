@@ -9,6 +9,8 @@ import PopupDescriptionElement from "./elements/PopupDescriptionElement";
 import { useCollections, useCollectionsDispatch } from "@/contexts/CollectionsContext";
 import { useRouter } from "next/router";
 import type { CardProps } from "@/types/elements";
+import { toast } from "react-toastify";
+import DropdownCollections from "./elements/DropdownCollections";
 
 const card_css = css`
 padding: 5px;
@@ -58,8 +60,7 @@ padding: 0.5rem 1rem;
 border-radius: 5px;
 background-color: #333;
 color: #fff;
-border: 1px solid #333;
-cursor: pointer;
+border: none;
 transition: all 0.2s ease-in-out;
 outline: none;
 font-size: 0.7rem;
@@ -67,9 +68,8 @@ font-weight: 600;
 width: 11rem;
 
 &:hover {
-    background - color: #111;
-border: 1px solid #fff;
-    }
+    background-color: #222;
+}
 `
 
 const Card = (props: CardProps) => {
@@ -79,6 +79,7 @@ const Card = (props: CardProps) => {
     const [isMobile, setIsMobile] = useState(false)
     const dispatch = useCollectionsDispatch()
     const router = useRouter()
+    const { collections, modalContent, dropdown } = useCollections()
 
     useEffect(() => {
         setIsMobile(window.innerWidth < 768)
@@ -223,14 +224,28 @@ const Card = (props: CardProps) => {
                     </div>
                 </div >
             </button>
-            <button className={button_css}
-                onClick={() => {
-                    dispatch({ type: "SET_MODAL", modal: true });
-                    dispatch({ type: "SET_MODAL_CONTENT", modalContent: props });
-                    dispatch({ type: "SET_MODAL_TYPE", modalType: "add_to_collection" });
-                }}>
-                Add to collection
-            </button>
+            <div className={css`
+                position: relative;
+                `}>
+                <button className={button_css}
+                    onMouseEnter={() => {
+                            dispatch({ type: "SET_DROPDOWN", dropdown: true });
+                            dispatch({ type: "SET_DROPDOWN_CONTENT", dropdownContent: props });
+                            dispatch({ type: "SET_DROPDOWN_TYPE", dropdownType: "add_to_collection" });
+                    }}
+                    onMouseLeave={() => {
+                        dispatch({ type: "SET_DROPDOWN", dropdown: false });
+                        dispatch({ type: "SET_DROPDOWN_CONTENT", dropdownContent: null });
+                        dispatch({ type: "SET_DROPDOWN_TYPE", dropdownType: null });
+                    }}>
+                    Add to collection
+                <DropdownCollections 
+                media={props} 
+                isLeft={isLeft}
+                />
+                </button>
+            </div>
+
         </div>
     );
 }

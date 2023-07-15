@@ -8,6 +8,10 @@ export const collectionsInitialState = {
     modal: false,
     modalContent: null,
     modalType: null,
+
+    dropdown: false,
+    dropdownContent: null,
+    dropdownType: null,
 };
 
 export const CollectionsContext = createContext<any>(null);
@@ -45,6 +49,38 @@ export const collectionsReducer = (state: any, action: any) => {
                     ...state,
                 };
             }
+        case 'ADD_MEDIA_TO_COLLECTION_BY_TITLE':
+            const media = action.mediaToAdd;
+            const collectionTitle = action.collectionTitle;
+            const newCollectionsAfterAddMedia = state.collections.map((collection: any) => {
+                if (collection?.title === collectionTitle) {
+                    return {
+                        ...collection,
+                        media: [...collection.media, media]
+                    };
+                } else {
+                    return collection;
+                }
+            });
+            return {
+                ...state,
+                collections: newCollectionsAfterAddMedia
+            };
+        case 'REMOVE_MEDIA_FROM_COLLECTION_BY_TITLE':
+            const mediaToRemove = action.mediaToRemove;
+            const title = action.collectionTitle;
+            const newCollectionsAfterRemoveMedia = state.collections.map((collection: any) => {
+                if (collection?.title === title) {
+                    collection.media = collection.media.filter((m: any) => {m?.id !== mediaToRemove?.id});
+                    return collection;
+                } else {
+                    return collection;
+                }
+            });
+            return {
+                ...state,
+                collections: newCollectionsAfterRemoveMedia
+            };
         case 'REMOVE_ALL_COLLECTIONS':
             return {
                 ...state,
@@ -52,7 +88,7 @@ export const collectionsReducer = (state: any, action: any) => {
             };
         case 'DELETE_COLLECTION':
             const deleteCollection = action.deleteCollection;
-            const newCollectionsAfterDelete = state.collections.filter((collection: any) => collection.title !== deleteCollection.title);
+            const newCollectionsAfterDelete = state.collections.filter((collection: any) => collection.id !== deleteCollection.id);
             return {
                 ...state,
                 collections: newCollectionsAfterDelete
@@ -97,6 +133,21 @@ export const collectionsReducer = (state: any, action: any) => {
                 modal: false,
                 modalContent: null,
                 modalType: null
+            };
+        case 'SET_DROPDOWN':
+            return {
+                ...state,
+                dropdown: action.dropdown
+            };
+        case 'SET_DROPDOWN_CONTENT':
+            return {
+                ...state,
+                dropdownContent: action.dropdownContent
+            };
+        case 'SET_DROPDOWN_TYPE':
+            return {
+                ...state,
+                dropdownType: action.dropdownType
             };
         default:
             return state;

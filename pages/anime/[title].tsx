@@ -10,9 +10,9 @@ const DetailPage = ({ data }: { data: any }) => {
             {/* anilist complete detail */}
             {/* image */}
             <div className={css`
-                width: 100%;
-                height: 50vh;
-                background-image: url(${data?.coverImage?.large});
+            width: 100%;
+            height: 50vh;
+            background-image: url(${data?.coverImage?.large});
             background-position: center;
             background-repeat: no-repeat;
             background-color: #111;
