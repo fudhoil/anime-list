@@ -39,10 +39,15 @@ There are some other features such as adding a collection of anime to the user's
 
 ## Features
 
-- [x] Display a list of anime
-- [ ] Display more details about an anime
-- [ ] Add anime to a collection
-- [ ] Remove anime from a collection
-- [ ] Search for anime
-- [ ] Display a list of anime in a collection
-- [ ] Display more details about an anime in a collection
+- [x] Anime list
+- [-] Bulk add to collection (optional)
+- [x] Anime detail info
+- [x] Add to the collection
+- [x] Collection info
+- [x] Collection list info
+- [x] Remove collection
+- [x] Add collection
+- [x] Edit collection
+- [x] Collection detail info
+- [x] Remove anime from collection
+- [x] Edit collection name
