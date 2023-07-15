@@ -7,6 +7,7 @@ import { ReactNode } from 'react'
 import { NextPage } from 'next'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NextNProgress from 'nextjs-progressbar';
 
 type Page<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactNode) => ReactNode;
@@ -22,7 +23,17 @@ const App = ({ Component, pageProps }: Props) => {
     <ApolloProvider client={client}>
       <CollectionsProvider>
         {getLayout(
+          <>
+          <NextNProgress 
+            color="#fafafa"
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={3}
+            showOnShallow={true}
+          />
           <Component {...pageProps} />
+          <ToastContainer />
+          </>
         )}
       </CollectionsProvider>
     </ApolloProvider>

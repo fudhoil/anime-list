@@ -12,6 +12,7 @@ const DescriptionElement = ({ text, clamp }: { text: string, clamp: number }) =>
             display: -webkit-box;
             -webkit-line-clamp: ${clamp};
             -webkit-box-orient: vertical;
+            color: #999;
         `} data-name="description">
             {parse(text)}
         </p>

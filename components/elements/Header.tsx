@@ -35,7 +35,7 @@ const Header = ({ title, subtitle }: { title: string, subtitle: string }) => {
           color: #fafafa;
           cursor: pointer;
           transition: all 0.3s ease-in-out;
-          font-size: 0.9rem;
+          font-size: 0.8rem;
           &:hover {
             background-color: #222;
           }
