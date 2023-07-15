@@ -50,6 +50,22 @@ export const collectionsReducer = (state: any, action: any) => {
                 ...state,
                 collections: []
             };
+        case 'DELETE_COLLECTION':
+            const deleteCollection = action.deleteCollection;
+            const newCollectionsAfterDelete = state.collections.filter((collection: any) => collection.title !== deleteCollection.title);
+            return {
+                ...state,
+                collections: newCollectionsAfterDelete
+            };
+        case 'EDIT_COLLECTION':
+            const editCollection = action.editCollection;
+            const oldCollection = action.oldCollection;
+            const newCollectionsAfterEdit = state.collections.filter((collection: any) => collection.title !== oldCollection.title);
+            newCollectionsAfterEdit.push(editCollection);
+            return {
+                ...state,
+                collections: newCollectionsAfterEdit
+            };
         case 'SET_COLLECTION':
             return {
                 ...state,
