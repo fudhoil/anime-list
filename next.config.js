@@ -5,7 +5,7 @@ const nextConfig = {
     domains: ['https://graphql.anilist.co', 's4.anilist.co'],
   },
   compiler: {
-    removeConsole: false,
+    removeConsole: true,
   },
 }
 
