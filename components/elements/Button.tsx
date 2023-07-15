@@ -4,11 +4,11 @@ const Button = ({ text, onClick, disabled }: { text: string, onClick: any, disab
     return (
 
         <button className={css`
-            background-color: #111;
+            background-color: transparent;
+            box-shadow: -2px 0px 0px 0px #333;
             color: #fafafa;
             border: none;
             padding: 0.5rem 1rem;
-            border-radius: 5px;
             font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;

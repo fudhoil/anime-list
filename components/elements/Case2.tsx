@@ -32,6 +32,8 @@ const Case2 = ({
             align-items: start;
             width: 100%;
             height: 100%;
+            font-size: 0.75rem;
+            font-weight: 300;
             `}>
            
 
@@ -45,61 +47,104 @@ const Case2 = ({
             border: none;
             gap: 1rem;
             `}>
-                <h2>Create New Collection</h2>
-                <input type="text" placeholder="New collection title" className={css`
+
+                <h2 className={css`
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                `}>Create New Collection</h2>
+
+
+                <div className={css`
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
                 width: 100%;
-                padding: 0.5rem 1rem;
-                border-radius: 2px;
-                border: none;
-                background-color: #fafafa;
-                color: #333;
-                `} value={newCollectionName} onChange={(e) => handleChange(e)} />
-                {error && (
-                    <span className={css`
+                `}>
+                    <input type="text" placeholder="ex: OP Anime Collections" className={css`
+                    width: 100%;
+                    padding: 0.5rem 1rem;
+                    border-radius: 2px;
+                    border: none;
+                    outline: none;
                     font-size: 0.75rem;
                     font-weight: 300;
                     line-height: 1.5;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    color: red;
-                    `}>{error}</span>
-                )}
-                <button className={css`
-                padding: 0.5rem 1rem;
-                border-radius: 5px;
-                background-color: #333;
-                color: #fff;
-                border: none;
-                outline: none;
-                margin-left: auto;
-                cursor: pointer;
+                    background-color: #333;
+                    // text color inside input
+                    color: #fff;
+                    `} value={newCollectionName} onChange={(e) => handleChange(e)} />
+                    {error && (
+                        <span className={css`
+                        font-size: 0.75rem;
+                        font-weight: 300;
+                        line-height: 1.5;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        color: red;
+                        `}>{error}</span>
+                    )}
+                    <button className={css`
+                    background-color: transparent;
+                    padding: ${error?.length > 0 || newCollectionName?.length < 1 ? '0 1rem' : '0.5rem 1rem'};
+                    box-shadow: -2px 0px 0px 0px #333;
+                    border: none;
+                    outline: none;
+                    color: #fff;
+                    margin-left: auto;
+                    cursor: pointer;
+                    height: 100%;
+                    &:hover {
+                        background-color: #222;
+                    }
 
-                &:disabled {
-                    display: none;
-                }
-                `}
-                    onClick={() => {
-                        if (error) {
-                            return;
+                    &:disabled {
+                        cursor: auto;
+                        &:hover {
+                            background-color: transparent;
                         }
-                        const id = new Date().getTime();
-                        dispatch({ type: 'SET_COLLECTIONS', newCollections: { 
-                            id: id,
-                            title: newCollectionName, 
-                            media: [] } 
-                        });
-                        setNewCollectionName('');
-                        localStorage.setItem('collections', JSON.stringify([...collections, { 
-                            id: id,
-                            title: newCollectionName, 
-                            media: [] 
-                        }]));
-                    }}
-                    disabled={error?.length > 0 || newCollectionName?.length < 1}
-                > Create</button>
+                    }
+                    `}
+                        onClick={() => {
+                            if (error) {
+                                return;
+                            }
+                            const id = new Date().getTime();
+                            dispatch({ type: 'SET_COLLECTIONS', newCollections: {
+                                id: id,
+                                title: newCollectionName,
+                                media: [] }
+                            });
+                            setNewCollectionName('');
+                            localStorage.setItem('collections', JSON.stringify([...collections, {
+                                id: id,
+                                title: newCollectionName,
+                                media: []
+                            }]));
+                        }}
+                        disabled={error?.length > 0 || newCollectionName?.length < 1}
+                    >{error?.length > 0 || newCollectionName?.length < 1 ? (
+                        <span className={css`
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 0.5rem;
+                        `}>
+                        {/* long arrow to left */}
+                        <svg xmlns="http://www.w3.org/2000/svg" className={css`
+                        width: 2rem;
+                        height: 2rem;
+                        `} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                        <span>Fill this, if you want to create a new collection</span>
+                        </span>
+                    ) : 'Create'}</button>
                 </div>
+            </div>
 
             {/* pick which collections */}
             <div className={css`
@@ -111,12 +156,17 @@ const Case2 = ({
             border: none;
             gap: 1rem;
             `}>
-                <h2>
-                    My Collections
-                </h2>
+                <h2 className={css`
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                `}>My Collections</h2>
+
                 <div className={css`
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
                 grid-gap: 1rem;
                 width: 100%;
                 `}>
@@ -129,9 +179,9 @@ const Case2 = ({
                             align-items: center;
                             width: 100%;
                             padding: 0.5rem 1rem;
-                            border-radius: 2px;
+                            background-color: transparent;
                             border: none;
-                            background-color: #333;
+                            box-shadow: -2px 0px 0px 0px #333;
                             color: #fff;
                             cursor: pointer;
                             gap: 1rem;
@@ -140,13 +190,34 @@ const Case2 = ({
                                 background-color: #222;
                                 color: #fff;
                             }
+
+                            @media screen and (max-width: 768px) {
+                                padding: 0.5rem;
+                                flex-direction: column;
+                                align-items: start;
+                                gap: 0.5rem;
+                            }
                             `} 
                             onClick={() => {
                                 dispatch({ type: 'SET_MODAL_TYPE', modalType: 'edit' });
                                 dispatch({ type: 'SET_COLLECTION', collection });
                             }}
                             >
-                                <Image src={collection?.media[0]?.coverImage?.medium} alt={collection?.media[0]?.title?.romaji} width={50} height={50} />
+                                <div className={css`
+                                width: 100px;
+                                height: 150px;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                `}>
+                                    <Image src={collection?.media[0]?.coverImage?.medium} alt={collection?.media[0]?.title?.romaji} 
+                                    layout='responsive' width={100} height={150}
+                                    onError={(e: any) => {
+                                        e.target.onerror = null;
+                                        e.target.src = '/images/empty.svg';
+                                    }} />
+                                </div>
                                 <div className={css`
                                 display: flex;
                                 flex-direction: column;

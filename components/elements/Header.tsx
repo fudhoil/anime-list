@@ -28,12 +28,17 @@ const Header = ({ title, subtitle }: { title: string, subtitle: string }) => {
         `}>
         <Link href="https://github.com/fudhoil"
           className={css`
-              text-decoration: underline;
-
-              &:hover {
-                color: #fff;
-              }
-
+          padding: 0.5rem 1rem;
+          box-shadow: -2px 0px 0px 0px #333;
+          background-color: transparent;
+          border: none;
+          color: #fafafa;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+          font-size: 0.9rem;
+          &:hover {
+            background-color: #222;
+          }
               @media (max-width: 768px) {
                 display: none;
               }
@@ -42,14 +47,14 @@ const Header = ({ title, subtitle }: { title: string, subtitle: string }) => {
         {/* button modal */}
         <button className={css`
             padding: 0.5rem 1rem;
-            background-color: #333;
+            box-shadow: -2px 0px 0px 0px #333;
+            background-color: transparent;
             border: none;
-            border-radius: 5px;
             color: #fafafa;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
             &:hover {
-              background-color: #444;
+              background-color: #222;
             }
 
           `} onClick={() => {

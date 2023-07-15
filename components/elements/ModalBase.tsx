@@ -19,9 +19,8 @@ const ModalBase = ({ children, open }: { children: any, open: boolean }) => {
             <div className={css`
             position: relative;
             background-color: #111;
-            border: 1px solid #333;
+            box-shadow: -2px 0px 0px 0px #333;
             padding: 1rem;
-            border-radius: 5px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -44,6 +43,10 @@ const ModalBase = ({ children, open }: { children: any, open: boolean }) => {
                 cursor: pointer;
                 border-radius: 0 5px 0 5px;
                 background-color: #333;
+
+                &:hover {
+                    background-color: #222;
+                }
             `} onClick={() => dispatch({ type: 'SET_MODAL', modal: false })}>
                     <svg xmlns="http://www.w3.org/2000/svg" className={css`
                     width: 1rem;

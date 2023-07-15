@@ -66,7 +66,7 @@ const EditElement = ({
                     line-height: 1.2;
                     width: 100%;
                     `}>
-                        {collection?.title} 
+                        {collections?.find((c: any) => c.id === collection.id)?.title} 
                         <span className={css`
                         font-size: 0.75rem;
                         font-weight: 300;
@@ -133,7 +133,7 @@ const EditElement = ({
                         title: editCollectionName, 
                         media: collection.media }, 
                         oldCollection: collection });
-                    localStorage.setItem('collections', JSON.stringify([...collections.filter((c: any) => c.title !== collection.title), { 
+                        localStorage.setItem('collections', JSON.stringify([...collections.filter((c: any) => c.id !== collection.id), { 
                         id : collection.id,
                         title: editCollectionName, 
                         media: collection.media }]));

@@ -58,7 +58,7 @@ align-items: end;
 const button_css = css`
 padding: 0.5rem 1rem;
 border-radius: 5px;
-background-color: #333;
+background-color: #222;
 color: #fff;
 border: none;
 transition: all 0.2s ease-in-out;

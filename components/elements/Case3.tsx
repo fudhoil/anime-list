@@ -4,6 +4,7 @@ import parse from 'html-react-parser'
 import CardElement from './CardElement'
 import BackMainCollections from './BackMainCollections'
 import EditElement from './EditElement'
+import Image from 'next/image'
 
 const Case3 = ({
     modalContent,
@@ -87,8 +88,41 @@ const Case3 = ({
                     justify-content: center;
                     `}>
                         {collection?.media?.map((media: any) => (
-                            <CardElement media={media} key={media.id} />
+                            <CardElement media={media} key={media?.id} />
                         ))}
+                        {/* if the is no media */}
+                        {collection?.media?.length === 0 && (
+                            <div className={css`
+                            display: flex;
+                            width: 100%;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 1rem;
+                            `}>
+                                <div className={css`
+                                display: flex;
+                                width: 100%;
+                                height: 100%;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 1rem;
+                                `}>
+                                    <Image
+                                        src="/images/empty.svg"
+                                        alt="empty"
+                                        width={100}
+                                        height={100}
+                                    />
+                                    <p className={css`
+                                    font-size: 1rem;
+                                    font-weight: 400;
+                                    line-height: 1.5;
+                                    `}>There is no item in this collection</p>
+                                </div>
+                            </div>
+                        )}
             </div>
         </div>
     </div>

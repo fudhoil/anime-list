@@ -51,50 +51,186 @@ const DetailPage = ({ data }: { data: any }) => {
                         align-items: center;
                         gap: 1rem;
                         `}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-star" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#f1c40f" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <path d="M12 17.25l-6.386 3.92l1.623-7.067l-5.587-4.853l7.34-.636L12 3l2.71 6.614l7.34 .636l-5.587 4.853l1.623 7.067z" />
-                        </svg>
-                        <span className={css`
-                        font-size: 1.2rem;
-                        font-weight: 400;
-                        `}>
-                            {data?.averageScore}%
-                        </span>
+                       
+                        <div className={css`
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 0.5rem;
+                            `}>
+                                <span className={css`
+                                font-size: 0.75rem;
+                                font-weight: 400;
+                                color: #999;
+                                `}>
+                                    Scores
+                                </span>
+                            <span className={css`
+                            font-size: 1.2rem;
+                            font-weight: 400;
+                            `}>
+                                {data?.averageScore}%
+                            </span>
+                        </div>
 
-                        {/* fav */}
-                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#e74c3c" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <path d="M20 4.586c0 2.903 -2.29 5.416 -5.583 7.93c-3.296 2.512 -6.417 4.043 -6.417 7.544c0 2.423 1.983 4.14 4.583 4.14c1.395 0 2.75 -.64 3.834 -1.77l.583 -.558l.583 .558c1.084 1.13 2.439 1.77 3.834 1.77c2.6 0 4.583 -1.717 4.583 -4.14c0 -3.5 -3.12 -5.032 -6.417 -7.544c-3.293 -2.514 -5.583 -5.027 -5.583 -7.93c0 -2.21 1.79 -4 4 -4c1.357 0 2.705 .638 3.743 1.802c1.037 -1.164 2.386 -1.802 3.743 -1.802c2.21 0 4 1.79 4 4z" />
-                        </svg>
-                        <span className={css`
-                        font-size: 1.2rem;
-                        font-weight: 400;
-                        `}>
-                            {data?.favourites}
-                        </span>
+                        <div className={css`
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 0.5rem;
+                            `}>
+                                <span className={css`
+                                font-size: 0.75rem;
+                                font-weight: 400;
+                                color: #999;
+                                `}>
+                                    Favorites
+                                </span>
+                            <span className={css`
+                            font-size: 1.2rem;
+                            font-weight: 400;
+                            `}>
+                                {data?.favourites}
+                            </span>
+                        </div>
 
-                        {/* popularity */}
-                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trending-up" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2ecc71" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <polyline points="3 17 9 11 13 15 21 7" />
-                            <polyline points="14 7 21 7 21 14" />
-                        </svg>
-                        <span className={css`
-                        font-size: 1.2rem;
-                        font-weight: 400;
-                        `}>
-                            {data?.popularity}
-                        </span>
+                      
+                        <div className={css`
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 0.5rem;
+                            `}>
+                                <span className={css`
+                                font-size: 0.75rem;
+                                font-weight: 400;
+                                color: #999;
+                                `}>
+                                    Popularity
+                                </span>
+                            <span className={css`
+                            font-size: 1.2rem;
+                            font-weight: 400;
+                            `}>
+                                {data?.popularity}
+                            </span>
+                        </div>
 
                     </div>
                 </div>
-                <h1 className={css`
-                    font-size: 2rem;
-                    margin: 1rem 0;
+                <div className={css`
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 1rem;
+                    max-width: 800px;
+                    width: 100%;
+
+                    @media (max-width: 768px) {
+                        flex-direction: column;
+                        gap: 2rem;
+                    }
                     `}>
-                    {data?.title?.romaji}
-                </h1>
+                    <h1 className={css`
+                        font-size: 2rem;
+                        margin-left: auto;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+
+                        @media (max-width: 768px) {
+                            justify-content: space-between;
+                        }
+                        `}>
+                        {data?.title?.romaji} 
+                        <span className={css`
+                            font-size: 1rem;
+                            font-weight: 400;
+                            color: #999;
+                            margin-left: 1rem;
+                            align-self: center;
+                            white-space: nowrap;
+                            `}>
+                        ({data?.episodes} EP)</span>
+                    </h1>
+                    {/* section details */}
+                    <div className={css`
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        gap: 1rem;
+                        box-shadow: -2px 0px 0px 0px #333;
+                        padding: 1rem;
+                        background-color: transparent;
+                        outline: none;
+                        border: none;
+                        max-width: 20rem;
+                        overflow: hidden;=
+
+                        @media (max-width: 768px) {
+                            width: 100%;
+                            margin-top: 1rem;
+                        `}>
+                        
+                        <span className={css`
+                            font-size: 1.2rem;
+                            font-weight: 400;
+                            color: #999;
+                            // no wrap
+                            white-space: nowrap;
+                            `}>
+                            {data?.duration} min
+                        </span>
+                        <div className={css`
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 0.5rem;
+                            font-size: 0.75rem;
+                            `}>
+                                <span>
+                                Tags:
+                               </span>
+                            {data?.tags?.map((tag: any) => (
+                            <span className={css`
+                                color: #555;
+                                // no wrap
+                                white-space: nowrap;
+                                `} key={tag}>
+                                {tag?.name}
+                                {data?.tags?.length > 1 ? ", " : ""}
+                            </span>
+                            ))}
+                        </div>
+
+                        <div className={css`
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 0.5rem;
+                            font-size: 0.75rem;
+                            `}>
+                                <span>
+                                Genre:
+                               </span>
+                            {data?.genres?.map((genre: any) => (
+                            <span className={css`
+                                color: #555;
+                                // no wrap
+                                white-space: nowrap;
+                                `}
+                                key={genre}>
+                                {genre}
+                                {data?.genres?.length > 1 ? ", " : ""}
+                            </span>
+                            ))}
+                        </div>
+
+                    </div>
+                </div>
                 {/* line */}
                 <div className={css`
                 width: 100%;
@@ -106,15 +242,18 @@ const DetailPage = ({ data }: { data: any }) => {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    width: 100%;
+                    max-width: 800px;
                     margin: 0 auto;
                     gap: 2rem;
 
                     `}>
                     <p className={css`
                     font-size: 1.2rem;
-                    font-weight: 400;
+                    font-weight: 300;
                     text-align: justify;
+                    // letter spacing
+
+                    text-indent: 2rem;
                     `}>
                         {parse(data?.description)}
                     </p>
@@ -164,6 +303,20 @@ export const getServerSideProps = async (context: any) => {
                         }
                         favourites
                         popularity
+                        startDate {
+                            year
+                            month
+                            day
+                        }
+                        endDate {
+                            year
+                            month
+                            day
+                        }
+                        genres
+                        tags {
+                            name
+                        }
                     }
                 }
             `,

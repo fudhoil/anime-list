@@ -30,11 +30,39 @@ const DropdownCollections = ({
             display: ${dropdown && dropdownContent?.id === media?.id && dropdownType === 'add_to_collection' ? 'flex' : 'none'};
             `}>
                 {/* title */}
-                <span className={css`
-                font-size: 0.8rem;
-                font-weight: 600;
-                margin-right: auto;
-                `}>Collections</span>
+
+                <div className={css`
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                `}>
+                    <span className={css`
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    margin-right: auto;
+                    `}>Collections</span>
+
+                    {/* svg info */}
+                    <svg className={css`
+                    width: 1rem;
+                    height: 1rem;
+                    cursor: pointer;
+                    fill: #222;
+                    transition: all 0.25s ease-in-out;
+                    &:hover {
+                        fill: #111;
+                    }
+                    `} onClick={() => {
+                        toast.info('Click any available collection to add or remove this item from it')
+                    }} viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </div>
+
                 {/* line */}
                 <div className={css`
                 width: 100%;
@@ -132,7 +160,7 @@ const DropdownCollections = ({
                             }
                         }}>
                         <p className={css`
-                        font-size: 0.8rem;
+                        font-size: 0.75rem;
                         font-weight: 600;
                         margin-right: auto;
                         display: -webkit-box;
