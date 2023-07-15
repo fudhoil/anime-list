@@ -40,7 +40,7 @@ There are some other features such as adding a collection of anime to the user's
 ## Features
 
 - [x] Anime list
-- [-] Bulk add to collection (optional)
+- [ ] Bulk add to collection (optional)
 - [x] Anime detail info
 - [x] Add to the collection
 - [x] Collection info
