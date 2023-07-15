@@ -28,9 +28,21 @@ export const CollectionsProvider = ({ children }: any) => {
 export const collectionsReducer = (state: any, action: any) => {
     switch (action.type) {
         case 'SET_COLLECTIONS':
+            const newCollections = action.newCollections;
+            if (newCollections !== null) {
+                return {
+                    ...state,
+                    collections: [...state.collections, newCollections]
+                };
+            } else {
+                return {
+                    ...state,
+                };
+            }
+        case 'REMOVE_ALL_COLLECTIONS':
             return {
                 ...state,
-                collections: action.collections
+                collections: []
             };
         case 'SET_COLLECTION':
             return {
@@ -56,6 +68,13 @@ export const collectionsReducer = (state: any, action: any) => {
             return {
                 ...state,
                 modalType: action.modalType
+            };
+        case 'CLOSE_MODAL':
+            return {
+                ...state,
+                modal: false,
+                modalContent: null,
+                modalType: null
             };
         default:
             return state;

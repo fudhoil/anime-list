@@ -63,11 +63,19 @@ export default function Home() {
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(10)
   const [lastPage, setLastPage] = useState(1)
-  const collections = useCollections()
-
   const [query, setQuery] = useState(anime_list({ page, perPage }))
-
   const { data, error, loading } = useQuery(query)
+  const dispatch = useCollectionsDispatch()
+  const { collections, collection, collection_id, modal, modalContent, modalType } = useCollections()
+
+  useEffect(() => {
+    const local: any = localStorage.getItem('collections')
+    if (local?.[0]?.title) {
+        dispatch({ type: 'SET_COLLECTIONS', newCollections: JSON.parse(local) })
+      } else {
+        dispatch({ type: 'REMOVE_ALL_COLLECTIONS' })
+    }
+  }, [dispatch])
 
   useEffect(() => {
     if (data?.Page?.pageInfo?.lastPage) {
@@ -75,6 +83,7 @@ export default function Home() {
     }
   }, [data])
 
+  console.log('collections: ', collections)
   return (
     <>
       <Head>

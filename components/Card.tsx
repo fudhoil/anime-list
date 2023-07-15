@@ -147,6 +147,24 @@ const Card = (props: CardProps) => {
                         padding: 1rem;
                         height: 100%;
                     `}>
+                        {/* arror to the right */}
+                        <div className={css`
+                            position: absolute;
+                            width: 0;
+                            height: 0;
+                            border-top: 1rem solid transparent;
+                            border-bottom: 1rem solid transparent;
+                            border-left: 1rem solid #fafafa;
+                            left: ${isLeft ? "auto" : "0"};
+                            right: ${isLeft ? "0" : "auto"};
+                            top: 30%;
+                            z-index: 1;
+                            rotate: ${isLeft ? "180deg" : "0deg"};
+
+                            @media (max-width: 768px) {
+                                display: none;
+                            }
+                        `} />
                         <PopupDescriptionElement content={props} isLeft={isLeft} />
                     </div>
 

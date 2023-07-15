@@ -19,15 +19,19 @@ const ModalBase = ({ children, open }: { children: any, open: boolean }) => {
             <div className={css`
             position: relative;
             background-color: #111;
-            border: 1px solid #fafafa;
+            border: 1px solid #333;
             padding: 1rem;
             border-radius: 5px;
-            width: 90%;
-            height: 90%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            width: 90%;
+            height: 90%;
+
+            @media (min-width: 1024px) {
+                width: 50%;
+            }
         `}>
                 {children}
                 <button className={css`
@@ -39,6 +43,7 @@ const ModalBase = ({ children, open }: { children: any, open: boolean }) => {
                 color: #fafafa;
                 cursor: pointer;
                 border-radius: 0 5px 0 5px;
+                background-color: #333;
             `} onClick={() => dispatch({ type: 'SET_MODAL', modal: false })}>
                     <svg xmlns="http://www.w3.org/2000/svg" className={css`
                     width: 1rem;

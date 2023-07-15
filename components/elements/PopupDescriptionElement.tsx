@@ -18,14 +18,14 @@ const PopupDescriptionElement = ({ content, isLeft }: { content: CardProps, isLe
         <div className={css`
             position: absolute;
             width: ${isMobile ? "99%" : "110%"};
-            height: ${isMobile ? "fit-content" : "90%"};
+            height: ${isMobile ? "fit-content" : "60%"};
             overflow: auto;
             padding: 1rem;
             box-sizing: border-box;
             background-color: #111;
             opacity: ${isMobile ? "0.9" : "1"};
             top: ${isMobile ? "0" : "20%"};
-            left: ${(isMobile || isLeft) ? "0" : "-111%"};
+            left: ${(isMobile || isLeft) ? "100%" : "-111%"};
             z-index: 999;
         `}>
             {/* All details */}
@@ -36,7 +36,8 @@ const PopupDescriptionElement = ({ content, isLeft }: { content: CardProps, isLe
                 align-items: start;
                 margin-bottom: 1rem;
                 gap: 1rem;
-            `}>
+                position: relative;
+                `}>
                 {/* details */}
                 <div className={css`
                     display: flex;
