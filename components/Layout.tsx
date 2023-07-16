@@ -1,7 +1,15 @@
 import { css } from "@emotion/css";
-import Header from "./elements/Header";
 import { useCollections, useCollectionsDispatch } from "@/contexts/CollectionsContext";
 import { useEffect } from "react";
+import dynamic from 'next/dynamic'
+
+const DynamicHeader = dynamic(() => import('./elements/Header'), {
+  ssr: false
+})
+
+const DinamicModal = dynamic(() => import('@/components/Modal'), {
+  ssr: false
+})
 
 const Layout = (props: any) => {
     const { children } = props
@@ -27,8 +35,9 @@ const Layout = (props: any) => {
         padding: 1rem 1rem;
         color: #fafafa;
       `}>
-            <Header title="Anime List" subtitle="List of all anime" />
+            <DynamicHeader title="Anime List" subtitle="List of all anime" />
             {children}
+            <DinamicModal />
         </div>
     )
 }

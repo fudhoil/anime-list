@@ -134,12 +134,12 @@ const Case2 = ({
                         gap: 0.5rem;
                         `}>
                         {/* long arrow to left */}
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" className={css`
+                        <svg xmlns="http://www.w3.org/2000/svg" className={css`
                         width: 2rem;
                         height: 2rem;
                         `} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M15 18l-6-6 6-6" />
-                        </svg> */}
+                        </svg>
                         <span>Fill this, if you want to create a new collection</span>
                         </span>
                     ) : 'Create'}</button>
@@ -202,6 +202,7 @@ const Case2 = ({
                                 dispatch({ type: 'SET_MODAL_TYPE', modalType: 'edit' });
                                 dispatch({ type: 'SET_COLLECTION', collection });
                             }}
+                            key={collection?.id}
                             >
                                 <div className={css`
                                 width: 100px;
@@ -215,7 +216,7 @@ const Case2 = ({
                                     layout='responsive' width={100} height={150}
                                     onError={(e: any) => {
                                         e.target.onerror = null;
-                                        e.target.src = '/images/empty.svg';
+                                        e.target.src = '/icons/empty.svg';
                                     }} />
                                 </div>
                                 <div className={css`

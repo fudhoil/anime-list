@@ -11,7 +11,7 @@ const Cards = ({ data }: { data: CardProps[] }) => {
         <div className={css`
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-            gap: 2.5rem 0.2rem;
+            gap: 1rem 0.2rem;
             margin: 1rem 0;
             grid-auto-rows: dense;
             width: 100%;

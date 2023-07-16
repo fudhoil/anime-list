@@ -3,6 +3,20 @@ import { css } from "@emotion/css";
 import Image from "next/image";
 import parse from "html-react-parser";
 
+const tooltip_css = css`
+    position: relative;
+    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover span {
+        visibility: visible;
+        opacity: 1;
+    }
+`
+
 const DetailPage = ({ data }: { data: any }) => {
     console.log(data);
     return (
@@ -52,40 +66,61 @@ const DetailPage = ({ data }: { data: any }) => {
                         gap: 1rem;
                         `}>
                        
-                        <div className={css`
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            gap: 0.5rem;
-                            `}>
-                                <span className={css`
-                                font-size: 0.75rem;
-                                font-weight: 400;
-                                color: #999;
+                       <div className={tooltip_css}>
+                            {/* tooltip text */}
+                            <span className={css`
+                                visibility: hidden;
+                                width: 120px;
+                                background-color: #111;
+                                color: #fff;
+                                text-align: center;
+                                border-radius: 6px;
+                                padding: 5px 0;
+                                position: absolute;
+                                z-index: 1;
+                                bottom: 125%;
+                                left: 50%;
+                                margin-left: -60px;
+                                opacity: 0;
+                                transition: opacity 0.3s;
                                 `}>
-                                    Scores
-                                </span>
+                                Scores
+                            </span>
+                           <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-star" width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#f1c40f" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <path d="M12 17.25l-6.386 3.92l1.623-7.067l-5.587-4.853l7.34-.636L12 3l2.71 6.614l7.34 .636l-5.587 4.853l1.623 7.067z" />
+                            </svg>
                             <span className={css`
                             font-size: 1.2rem;
                             font-weight: 400;
                             `}>
                                 {data?.averageScore}%
                             </span>
-                        </div>
+                       </div>
 
-                        <div className={css`
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            gap: 0.5rem;
-                            `}>
-                                <span className={css`
-                                font-size: 0.75rem;
-                                font-weight: 400;
-                                color: #999;
+                        {/* fav */}
+                        {/* heart icon */}
+                        <div className={tooltip_css}>
+                            {/* tooltip text */}
+                            <span className={css`
+                                visibility: hidden;
+                                width: 120px;
+                                background-color: #111;
+                                color: #fff;
+                                text-align: center;
+                                border-radius: 6px;
+                                padding: 5px 0;
+                                position: absolute;
+                                z-index: 1;
+                                bottom: 125%;
+                                left: 50%;
+                                margin-left: -60px;
+                                opacity: 0;
+                                transition: opacity 0.3s;
                                 `}>
-                                    Favorites
-                                </span>
+                                Favourites
+                            </span>
+                            <Image src="/icons/heart.svg" alt="heart" width={20} height={20} />
                             <span className={css`
                             font-size: 1.2rem;
                             font-weight: 400;
@@ -94,20 +129,32 @@ const DetailPage = ({ data }: { data: any }) => {
                             </span>
                         </div>
 
-                      
-                        <div className={css`
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            gap: 0.5rem;
-                            `}>
-                                <span className={css`
-                                font-size: 0.75rem;
-                                font-weight: 400;
-                                color: #999;
+                        {/* popularity */}
+                        <div className={tooltip_css}>
+                            {/* tooltip text */}
+                            <span className={css`
+                                visibility: hidden;
+                                width: 120px;
+                                background-color: #111;
+                                color: #fff;
+                                text-align: center;
+                                border-radius: 6px;
+                                padding: 5px 0;
+                                position: absolute;
+                                z-index: 1;
+                                bottom: 125%;
+                                left: 50%;
+                                margin-left: -60px;
+                                opacity: 0;
+                                transition: opacity 0.3s;
                                 `}>
-                                    Popularity
-                                </span>
+                                Popularity
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trending-up" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2ecc71" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <polyline points="3 17 9 11 13 15 21 7" />
+                                <polyline points="14 7 21 7 21 14" />
+                            </svg>
                             <span className={css`
                             font-size: 1.2rem;
                             font-weight: 400;
@@ -194,12 +241,12 @@ const DetailPage = ({ data }: { data: any }) => {
                                 <span>
                                 Tags:
                                </span>
-                            {data?.tags?.map((tag: any) => (
+                            {data?.tags?.map((tag: any, i: number) => (
                             <span className={css`
                                 color: #555;
                                 // no wrap
                                 white-space: nowrap;
-                                `} key={tag}>
+                                `} key={i}>
                                 {tag?.name}
                                 {data?.tags?.length > 1 ? ", " : ""}
                             </span>
@@ -216,13 +263,13 @@ const DetailPage = ({ data }: { data: any }) => {
                                 <span>
                                 Genre:
                                </span>
-                            {data?.genres?.map((genre: any) => (
+                            {data?.genres?.map((genre: any, i: number) => (
                             <span className={css`
                                 color: #555;
                                 // no wrap
                                 white-space: nowrap;
                                 `}
-                                key={genre}>
+                                key={i}>
                                 {genre}
                                 {data?.genres?.length > 1 ? ", " : ""}
                             </span>
@@ -249,9 +296,9 @@ const DetailPage = ({ data }: { data: any }) => {
                     `}>
                     <p className={css`
                     font-size: 1.2rem;
-                    font-weight: 300;
+                    font-weight: 200;
                     text-align: justify;
-                    // letter spacing
+                    line-height: 1.5;
 
                     text-indent: 2rem;
                     `}>

@@ -31,7 +31,7 @@ const CardElement = ({media}: {media: CardProps}) => {
                 width: 100%;
                 height: 16rem;
             `}>
-                <Image src={media?.coverImage?.large} alt={media?.title?.english} layout="responsive" width={300} height={300} />
+                <Image src={media?.coverImage?.large} alt={media?.title?.romaji} layout="responsive" width={300} height={300} />
             </div>
 
             {/* Title */}
@@ -50,7 +50,7 @@ const CardElement = ({media}: {media: CardProps}) => {
                     -webkit-line-clamp: 1;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
-                `}>{media?.title?.english}</span>
+                `}>{media?.title?.romaji}</span>
             </div>
         </Link>
     )

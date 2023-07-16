@@ -10,7 +10,6 @@ import { useCollections, useCollectionsDispatch } from '@/contexts/CollectionsCo
 import CardsSkeleton from '@/components/elements/skeleton/CardsSkeleton'
 import Header from '@/components/elements/Header'
 import getLayouts from '@/utils/getLayouts'
-import Modal from '@/components/Modal'
 
 // anilist
 const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
@@ -29,14 +28,10 @@ const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
           id
           title {
             romaji
-            english
-            native
           }
           coverImage {
-            extraLarge
             large
             medium
-            color
           }
           description
           startDate {
@@ -65,7 +60,9 @@ export default function Home() {
   const [perPage, setPerPage] = useState(10)
   const [lastPage, setLastPage] = useState(1)
   const [query, setQuery] = useState(anime_list({ page, perPage }))
-  const { data, error, loading } = useQuery(query)
+  const { data, error, loading } = useQuery(query, {
+    ssr: true,
+  })
   const dispatch = useCollectionsDispatch()
   const { collections, collection, collection_id, modal, modalContent, modalType } = useCollections()
 
@@ -91,12 +88,20 @@ export default function Home() {
       {/* pagination */}
       {data?.Page?.pageInfo?.lastPage && (
         <>
-          <Modal />
           <PaginationElement page={page} setPage={setPage} lastPage={lastPage} setQuery={setQuery} list={anime_list} perPage={perPage} />
         </>
       )}
     </>
   )
+}
+
+// initial prop
+export async function getServerSideProps() {
+  return {
+    props: {
+      initialApolloState: {},
+    },
+  }
 }
 
 Home.getLayout = (page: any, pageProps: any) => getLayouts(page, "base", pageProps);

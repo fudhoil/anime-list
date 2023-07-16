@@ -45,22 +45,37 @@ const DropdownCollections = ({
                     `}>Collections</span>
 
                     {/* svg info */}
-                    <svg className={css`
-                    width: 1rem;
-                    height: 1rem;
+                    <button className={css`
+                    // clear button style
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
                     cursor: pointer;
-                    fill: #222;
                     transition: all 0.25s ease-in-out;
-                    &:hover {
-                        fill: #111;
-                    }
                     `} onClick={() => {
-                        toast.info('Click any available collection to add or remove this item from it')
-                    }} viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
+                        toast.info('Click any available collection to add or remove the item')
+                    }}
+                    type="button">
+                        <svg className={css`
+                        width: 1rem;
+                        height: 1rem;
+                        cursor: pointer;
+                        fill: #222;
+                        transition: all 0.25s ease-in-out;
+                        &:hover {
+                            fill: #111;
+                        }
+                        `}
+                        viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                    </button>
                 </div>
 
                 {/* line */}
@@ -171,7 +186,7 @@ const DropdownCollections = ({
                         `}
                         >{collection.title}</p>
                         {/* if media is in collection, show checkmark */}
-                        {collections?.find((c: any) => c.title === collection.title)?.media?.find((m: any) => m?.id === dropdownContent?.id) ? (
+                        {collections?.find((c: any) => c.title === collection.title)?.media?.find((m: any) => m?.id === dropdownContent?.id) && (
                             <svg className={css`
                             width: 1rem;
                             height: 1rem;
@@ -180,9 +195,6 @@ const DropdownCollections = ({
                                 <path fillRule="evenodd" clipRule="evenodd"
                                     d="M18.707 4.293a1 1 0 010 1.414l-10 10a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 13.586l9.293-9.293a1 1 0 011.414 0z" />
                             </svg>
-                        ) : (
-                            <>
-                            </>
                         )}
                     </button>
                 ))}

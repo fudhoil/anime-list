@@ -110,7 +110,7 @@ const Case3 = ({
                                 gap: 1rem;
                                 `}>
                                     <Image
-                                        src="/images/empty.svg"
+                                        src="/icons/empty.svg"
                                         alt="empty"
                                         width={100}
                                         height={100}
