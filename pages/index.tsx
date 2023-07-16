@@ -8,8 +8,12 @@ import { use, useEffect, useState } from 'react'
 import PaginationElement from '@/components/elements/PaginationElement'
 import { useCollections, useCollectionsDispatch } from '@/contexts/CollectionsContext'
 import CardsSkeleton from '@/components/elements/skeleton/CardsSkeleton'
-import Header from '@/components/elements/Header'
 import getLayouts from '@/utils/getLayouts'
+import dynamic from 'next/dynamic'
+
+const DynamicCards = dynamic(() => import('@/components/Cards'), {
+  ssr: false,
+})
 
 // anilist
 const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
@@ -57,7 +61,7 @@ const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
 
 export default function Home() {
   const [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(10)
+  const [perPage, setPerPage] = useState(20)
   const [lastPage, setLastPage] = useState(1)
   const [query, setQuery] = useState(anime_list({ page, perPage }))
   const { data, error, loading } = useQuery(query, {
@@ -83,7 +87,7 @@ export default function Home() {
         <CardsSkeleton count={perPage} />
       }
 
-      <Cards data={data?.Page?.media} />
+      <DynamicCards data={data?.Page?.media} />
 
       {/* pagination */}
       {data?.Page?.pageInfo?.lastPage && (
