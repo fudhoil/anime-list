@@ -64,7 +64,11 @@ const Case3 = () => {
 
                         @media (max-width: 768px) {
                             display: grid;
-                            grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+                            width: 100%;
+                            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                            gap: 0.5rem 0;
+                            // center the grid
+                            justify-items: center;
                         }
                         `}>
                             {collection?.media?.map((media: any) => (

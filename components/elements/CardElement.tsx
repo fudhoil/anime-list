@@ -21,7 +21,7 @@ const CardElement = ({media}: {media: CardProps}) => {
         @media (max-width: 768px) {
             flex-direction: column;
             align-items: center;
-            width: 10rem;
+            width: 9rem;
         }
     `}>
         {/* image */}
@@ -29,7 +29,7 @@ const CardElement = ({media}: {media: CardProps}) => {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            min-width: 10rem;
+            min-width: 9rem;
             height: 100%;
             position: relative;
             overflow: hidden;
@@ -38,7 +38,7 @@ const CardElement = ({media}: {media: CardProps}) => {
                 className={css`
                     cursor: pointer;
                     display: flex;
-                    max-width: 10rem;
+                    max-width: 9rem;
                 `} onClick={() => {
                     dispatch({type: "SET_MODAL", modal: false});
                     dispatch({type: "SET_MODAL_CONTENT", modalContent: null});

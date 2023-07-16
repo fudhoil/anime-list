@@ -57,8 +57,8 @@ const Case2 = ({
                 </TitleModal>
 
                 <div className={css`
-                display: flex;
-                flex-direction: row;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 align-items: center;
                 gap: 1rem;
                 grid-gap: 1rem;
