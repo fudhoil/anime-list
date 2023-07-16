@@ -3,7 +3,7 @@ import { css } from "@emotion/css";
 import Image from "next/image";
 import parse from "html-react-parser";
 
-const tooltip_css = css`
+export const tooltip_css = css`
     position: relative;
     display: inline-block;
     display: flex;
