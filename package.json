@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@apollo/client": "^3.7.17",
@@ -26,6 +27,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@emotion/eslint-plugin": "^11.11.0"
+    "@emotion/eslint-plugin": "^11.11.0",
+    "prettier": "^3.0.0"
   }
 }

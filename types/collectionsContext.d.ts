@@ -1,7 +1,7 @@
 export interface Collections {
-    collections: Collection[];
+  collections: Collection[];
 }
 
 export interface Collection {
-    id: number;
+  id: number;
 }

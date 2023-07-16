@@ -1,24 +1,26 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { gql, useQuery } from '../lib/apolloClient'
-import Cards from '@/components/Cards'
-import { css } from '@emotion/css'
-import Link from 'next/link'
-import { use, useEffect, useState } from 'react'
-import PaginationElement from '@/components/elements/PaginationElement'
-import { useCollections, useCollectionsDispatch } from '@/contexts/CollectionsContext'
-import CardsSkeleton from '@/components/elements/skeleton/CardsSkeleton'
-import getLayouts from '@/utils/getLayouts'
-import dynamic from 'next/dynamic'
+import Head from "next/head";
+import Image from "next/image";
+import { gql, useQuery } from "../lib/apolloClient";
+import Cards from "@/components/Cards";
+import { css } from "@emotion/css";
+import Link from "next/link";
+import { use, useEffect, useState } from "react";
+import PaginationElement from "@/components/elements/PaginationElement";
+import {
+  useCollections,
+  useCollectionsDispatch,
+} from "@/contexts/CollectionsContext";
+import CardsSkeleton from "@/components/elements/skeleton/CardsSkeleton";
+import getLayouts from "@/utils/getLayouts";
+import dynamic from "next/dynamic";
 
-const DynamicCards = dynamic(() => import('@/components/Cards'), {
+const DynamicCards = dynamic(() => import("@/components/Cards"), {
   ssr: false,
-})
+});
 
 // anilist
-const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
-  return (
-    gql(`
+const anime_list = ({ page, perPage }: { page: number; perPage: number }) => {
+  return gql(`
     query {
       Page(page: ${page}, perPage: ${perPage}) {
         pageInfo {
@@ -55,48 +57,59 @@ const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
         }
       }
     }
-  `)
-  )
-}
+  `);
+};
 
 export default function Home() {
-  const [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(20)
-  const [lastPage, setLastPage] = useState(1)
-  const [query, setQuery] = useState(anime_list({ page, perPage }))
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(20);
+  const [lastPage, setLastPage] = useState(1);
+  const [query, setQuery] = useState(anime_list({ page, perPage }));
   const { data, error, loading } = useQuery(query, {
     ssr: false,
-  })
-  const dispatch = useCollectionsDispatch()
-  const { collections, collection, collection_id, modal, modalContent, modalType } = useCollections()
+  });
+  const dispatch = useCollectionsDispatch();
+  const {
+    collections,
+    collection,
+    collection_id,
+    modal,
+    modalContent,
+    modalType,
+  } = useCollections();
 
   useEffect(() => {
     if (data?.Page?.pageInfo?.lastPage) {
-      setLastPage(data?.Page?.pageInfo?.lastPage)
+      setLastPage(data?.Page?.pageInfo?.lastPage);
     }
-  }, [data])
+  }, [data]);
 
-  console.log('collections: ', collections)
+  console.log("collections: ", collections);
   return (
     <>
       <Head>
         <title>Anime List</title>
       </Head>
       {/* anilist with pagination */}
-      {loading &&
-        <CardsSkeleton count={perPage} />
-      }
+      {loading && <CardsSkeleton count={perPage} />}
 
       <DynamicCards data={data?.Page?.media} />
 
       {/* pagination */}
       {data?.Page?.pageInfo?.lastPage && (
         <>
-          <PaginationElement page={page} setPage={setPage} lastPage={lastPage} setQuery={setQuery} list={anime_list} perPage={perPage} />
+          <PaginationElement
+            page={page}
+            setPage={setPage}
+            lastPage={lastPage}
+            setQuery={setQuery}
+            list={anime_list}
+            perPage={perPage}
+          />
         </>
       )}
     </>
-  )
+  );
 }
 
 // initial prop
@@ -105,7 +118,8 @@ export async function getServerSideProps() {
     props: {
       initialApolloState: {},
     },
-  }
+  };
 }
 
-Home.getLayout = (page: any, pageProps: any) => getLayouts(page, "base", pageProps);
+Home.getLayout = (page: any, pageProps: any) =>
+  getLayouts(page, "base", pageProps);

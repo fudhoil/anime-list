@@ -2,11 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['https://graphql.anilist.co', 's4.anilist.co'],
+    domains: ["https://graphql.anilist.co", "s4.anilist.co"],
   },
   compiler: {
     removeConsole: true,
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

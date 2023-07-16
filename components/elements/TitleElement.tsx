@@ -1,9 +1,10 @@
-import { css } from '@emotion/css';
-import type { TitleElementProps } from '@/types/elements';
+import { css } from "@emotion/css";
+import type { TitleElementProps } from "@/types/elements";
 
 const TitleElement = ({ text, f_size, f_weight }: TitleElementProps) => {
-    return (
-        <h3 className={css`
+  return (
+    <h3
+      className={css`
         font-size: ${f_size} || 1rem;
         font-weight: ${f_weight} || 400;
         overflow: hidden;
@@ -12,10 +13,12 @@ const TitleElement = ({ text, f_size, f_weight }: TitleElementProps) => {
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         text-align: left;
-    `} data-name="title">
-            {text}
-        </h3>
-    )
-}
+      `}
+      data-name="title"
+    >
+      {text}
+    </h3>
+  );
+};
 
 export default TitleElement;
