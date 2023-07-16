@@ -193,25 +193,7 @@ const Modal = () => {
                 )}
 
                 {modalType === "edit" && (
-                    <Case3
-                        collections={collections}
-                        dispatch={dispatch}
-                        modalContent={modalContent}
-                        selectedCollections={selectedCollections}
-                        error={error}
-                        errorEdit={errorEdit}
-                        newCollectionName={newCollectionName}
-                        editCollectionId={editCollectionId}
-                        editCollectionName={editCollectionName}
-                        handleSelect={handleSelect}
-                        handleChange={handleChange}
-                        handleEdit={handleEdit}
-                        setNewCollectionName={setNewCollectionName}
-                        setSelectedCollections={setSelectedCollections}
-                        setEditCollectionId={setEditCollectionId}
-                        setEditCollectionName={setEditCollectionName}
-                        selectChange={selectChange}
-                    />
+                    <Case3 />
                 )}
                 </>
                 )}

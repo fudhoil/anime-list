@@ -115,7 +115,7 @@ const EditElement = () => {
                         setEditCollectionId(collection.id);
                         setEditCollectionName(collection.title);
                         }} 
-                        disabled={editCollectionId}
+                        disabled={editCollectionId === collection.id}
                     />
                     
                     <Button
@@ -123,7 +123,7 @@ const EditElement = () => {
                     onClick={() => {
                         setShowDeletePopup(true)
                     }}
-                    disabled={editCollectionId}
+                    disabled={editCollectionId === collection.id}
                     />
             </div>
             )}
@@ -153,7 +153,7 @@ const EditElement = () => {
                         title: editCollectionName,
                         media: collection.media
                     }});
-                    
+
                         localStorage.setItem('collections', JSON.stringify([...collections.filter((c: any) => c.id !== collection.id), { 
                         id : collection.id,
                         title: editCollectionName, 

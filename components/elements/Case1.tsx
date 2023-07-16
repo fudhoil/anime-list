@@ -30,12 +30,7 @@ const Case1 = ({
          {collections?.length < 1 && (
             <>
                 {/* or create new collection */}
-            <InputCollection
-                newCollectionName={newCollectionName}
-                setNewCollectionName={setNewCollectionName}
-                handleChange={handleChange}
-                error={error}
-                />
+            <InputCollection />
             </>
         )}
         </>
