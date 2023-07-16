@@ -16,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This is a test project for a job application. It is a simple web app that displays a list of anime from anilist.co. The user can also click on an anime to see more details about it.
 
-There are some other features such as adding a collection of anime to the user's local storage, and a search bar to search for anime.
+There are some other features such as adding a collection of anime to the user's local storage, and many more.
 
 ## Technologies Used
 
