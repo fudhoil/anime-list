@@ -10,7 +10,7 @@ const InputCollection = () => {
     const [newCollectionName, setNewCollectionName] = useState('')
     const [error, setError] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
-    const [editMode, setEditMode] = useState(false)
+    const [editMode, setEditMode] = useState(collections?.length === 0 ? true : false)
 
     const handleChange = (e: any) => {
         setNewCollectionName(e.target.value)
@@ -275,6 +275,7 @@ const InputCollection = () => {
                                         background-color: #333;
                                         color: #999;
                                     }
+                                    display: ${collections.length === 0 ? 'none' : 'flex'};
                                     `}
                                         onClick={() => {
                                             setEditMode(false);
