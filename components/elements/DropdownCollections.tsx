@@ -151,7 +151,7 @@ const DropdownCollections = ({
                     cursor: pointer;
                     outline: none;
                     transition: all 0.25s ease-in-out;
-
+                    position: relative;
                     &:hover {
                         background-color: #333;
                         color: #fff;
@@ -179,12 +179,10 @@ const DropdownCollections = ({
                         font-weight: 600;
                         margin-right: auto;
                         display: -webkit-box;
-                        -webkit-line-clamp: 1;
-                        -webkit-box-orient: vertical;
                         overflow: hidden;
-                        text-overflow: ellipsis;
                         // text left
                         text-align: left;
+                        padding-right: 1rem;
                         `}
                         >{collection.title}</p>
                         {/* if media is in collection, show checkmark */}
@@ -193,6 +191,8 @@ const DropdownCollections = ({
                             width: 1rem;
                             height: 1rem;
                             fill: #fff;
+                            position: absolute;
+                            right: 0.5rem;
                             `} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" clipRule="evenodd"
                                     d="M18.707 4.293a1 1 0 010 1.414l-10 10a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L8 13.586l9.293-9.293a1 1 0 011.414 0z" />
