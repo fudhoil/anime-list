@@ -12,7 +12,7 @@ import getLayouts from '@/utils/getLayouts'
 import dynamic from 'next/dynamic'
 
 const DynamicCards = dynamic(() => import('@/components/Cards'), {
-  ssr: true,
+  ssr: false,
 })
 
 // anilist
@@ -65,7 +65,7 @@ export default function Home() {
   const [lastPage, setLastPage] = useState(1)
   const [query, setQuery] = useState(anime_list({ page, perPage }))
   const { data, error, loading } = useQuery(query, {
-    ssr: true,
+    ssr: false,
   })
   const dispatch = useCollectionsDispatch()
   const { collections, collection, collection_id, modal, modalContent, modalType } = useCollections()
