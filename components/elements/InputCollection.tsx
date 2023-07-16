@@ -39,7 +39,6 @@ const InputCollection = () => {
 
 
     return (
-        <>
          <div className={css`
             display: flex;
             flex-direction: column;
@@ -55,7 +54,9 @@ const InputCollection = () => {
                 font-size: 2rem;
                 font-weight: 400;
                 line-height: 1.5;
-                `}>Collections</h1>
+                `}>
+                    {collections?.length === 0 ? 'Create your first collection' : 'Collections'}
+                </h1>
 
                 <div className={css`
                 display: flex;
@@ -291,7 +292,6 @@ const InputCollection = () => {
                     </div>
                 </div>
             </div>
-        </>
     )
 }
 

@@ -194,7 +194,6 @@ const EditElement = () => {
                 )}
 
                 <WarningPopup 
-                    collection={collection} 
                     showDeletePopup={showDeletePopup}
                     setShowDeletePopup={setShowDeletePopup}
                 />

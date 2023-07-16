@@ -4,11 +4,10 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 
 const WarningPopup = ({
-    collection,
     showDeletePopup,
     setShowDeletePopup,
 }: any) => {
-    const {collections} = useCollections()
+    const {collections, collection} = useCollections()
     const dispatch = useCollectionsDispatch()
     return (
         <>

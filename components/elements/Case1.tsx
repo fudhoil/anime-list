@@ -28,10 +28,18 @@ const Case1 = ({
     return (
         <>
          {collections?.length < 1 && (
-            <>
+            <div className={css`
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            gap: 1rem;
+            width: 100%;
+            padding: 1rem;
+            box-shadow: -2px 0px 0px 0px #333;
+            `}>
                 {/* or create new collection */}
-            <InputCollection />
-            </>
+                <InputCollection />
+            </div>
         )}
         </>
     )
