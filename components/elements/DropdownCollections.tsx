@@ -183,6 +183,8 @@ const DropdownCollections = ({
                         -webkit-box-orient: vertical;
                         overflow: hidden;
                         text-overflow: ellipsis;
+                        // text left
+                        text-align: left;
                         `}
                         >{collection.title}</p>
                         {/* if media is in collection, show checkmark */}

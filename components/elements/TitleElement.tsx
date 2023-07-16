@@ -11,6 +11,7 @@ const TitleElement = ({ text, f_size, f_weight }: TitleElementProps) => {
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
+        text-align: left;
     `} data-name="title">
             {text}
         </h3>
