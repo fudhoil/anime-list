@@ -58,14 +58,26 @@ const Case2 = ({
 
                 <div className={css`
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
                 align-items: center;
-                gap: 1rem;
-                grid-gap: 1rem;
+                justify-content: center;
                 width: 100%;
+
+                @media screen and (max-width: 768px) {
+                    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                    justify-content: start;
+                    align-items: start;
+                }
                 `}>
                     {collections?.map((collection: any) => (
-                        <>
+                        <div className={css`
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        width: 100%;
+                        min-height: 100px;
+                        `} 
+                        key={collection?.id}>
                            {/* card for every collections with thumbnail */}
                             <button className={css`
                             display: flex;
@@ -95,9 +107,7 @@ const Case2 = ({
                             onClick={() => {
                                 dispatch({ type: 'SET_MODAL_TYPE', modalType: 'edit' });
                                 dispatch({ type: 'SET_COLLECTION', collection });
-                            }}
-                            key={collection?.id}
-                            >
+                            }}>
                                 <div className={css`
                                 width: 100px;
                                 height: 150px;
@@ -124,9 +134,11 @@ const Case2 = ({
                                     font-weight: 500;
                                     line-height: 1.5;
                                     display: -webkit-box;
-                                    -webkit-line-clamp: 1;
+                                    -webkit-line-clamp: 2;
                                     -webkit-box-orient: vertical;
                                     overflow: hidden;
+                                    text-align: start;
+                                    margin-bottom: 0.5rem;
                                     `}>{collection?.title}</span>
                                     <span className={css`
                                     font-size: 0.75rem;
@@ -136,6 +148,7 @@ const Case2 = ({
                                     -webkit-line-clamp: 1;
                                     -webkit-box-orient: vertical;
                                     overflow: hidden;
+                                    color: #999;
                                     `}>
                                     {collection?.media?.length} items</span>
                                 </div>
@@ -145,7 +158,7 @@ const Case2 = ({
                                 `}>
                                 </div>
                             </button>
-                        </>
+                        </div>
                     ))}
                 </div>
             </div>

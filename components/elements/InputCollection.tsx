@@ -69,6 +69,10 @@ const InputCollection = () => {
                 font-size: 0.75rem;
                 font-weight: 300;
                 justify-content: space-between;
+
+                @media (max-width: 768px) {
+                    padding: 0.5rem 0.25rem;
+                }
                 `}>
                     <div className={css`
                     display: flex;
@@ -82,6 +86,15 @@ const InputCollection = () => {
                     border-radius: 2px;
                     margin-left: auto;
                     width: ${editMode ? '100%' : 'auto'};
+
+                    @media (max-width: 768px) {
+                        width: 100%;
+                        flex-direction: column;
+                        align-items: start;
+                        gap: 0;
+                        grid-gap: 0;
+                        background-color: transparent;
+                    }
                     `}>
                             <div className={css`
                             display: flex;
@@ -105,6 +118,11 @@ const InputCollection = () => {
                                 background-color: transparent;
                                 // text color inside input
                                 color: #fff;
+
+                                @media (max-width: 768px) {
+                                    width: 100%;
+                                    background-color: #222;
+                                }
                                 `} value={newCollectionName} onChange={(e) => handleChange(e)} />
                                 {error && (
                                     <span className={css`
@@ -139,6 +157,10 @@ const InputCollection = () => {
                             align-items: center;
                             gap: 1rem;
                             grid-gap: 1rem;
+
+                            @media (max-width: 768px) {
+                                width: 100%;
+                            }
                             `}>
                                 {!editMode ? (
                                     <button className={css`
@@ -154,6 +176,10 @@ const InputCollection = () => {
 
                                     &:hover {
                                         background-color: #222;
+                                    }
+
+                                    @media (max-width: 768px) {
+                                        width: 100%;
                                     }
                                     `}
                                     onClick={() => setEditMode(true)}

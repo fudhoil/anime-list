@@ -30,7 +30,15 @@ const EditElement = () => {
         }
     }
     return (
-        <>
+        <div className={css`
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        width: 100%;
+        height: 100%;
+        font-size: 0.75rem;
+        font-weight: 300;
+        `}>
              { collection.id === editCollectionId ? (
                 <div className={css`
                 display: flex;
@@ -182,7 +190,7 @@ const EditElement = () => {
                     setShowDeletePopup={setShowDeletePopup}
                 />
             </div>
-        </>
+        </div>
     )
 }
 
