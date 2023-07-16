@@ -10,6 +10,7 @@ import { useCollections, useCollectionsDispatch } from '@/contexts/CollectionsCo
 import CardsSkeleton from '@/components/elements/skeleton/CardsSkeleton'
 import Header from '@/components/elements/Header'
 import getLayouts from '@/utils/getLayouts'
+import Modal from '@/components/Modal'
 
 // anilist
 const anime_list = ({ page, perPage }: { page: number, perPage: number }) => {
@@ -88,9 +89,12 @@ export default function Home() {
       <Cards data={data?.Page?.media} />
 
       {/* pagination */}
-      {data?.Page?.pageInfo?.lastPage &&
-        <PaginationElement page={page} setPage={setPage} lastPage={lastPage} setQuery={setQuery} list={anime_list} perPage={perPage} />
-      }
+      {data?.Page?.pageInfo?.lastPage && (
+        <>
+          <Modal />
+          <PaginationElement page={page} setPage={setPage} lastPage={lastPage} setQuery={setQuery} list={anime_list} perPage={perPage} />
+        </>
+      )}
     </>
   )
 }
