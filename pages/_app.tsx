@@ -8,6 +8,7 @@ import { NextPage } from 'next'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NextNProgress from 'nextjs-progressbar';
+import Modal from '@/components/Modal'
 
 type Page<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactNode) => ReactNode;
@@ -32,6 +33,8 @@ const App = ({ Component, pageProps }: Props) => {
             showOnShallow={true}
           />
           <Component {...pageProps} />
+          
+          {/* <Modal /> */}
           <ToastContainer />
           </>
         )}

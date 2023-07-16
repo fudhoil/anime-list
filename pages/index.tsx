@@ -88,7 +88,9 @@ export default function Home() {
       <Cards data={data?.Page?.media} />
 
       {/* pagination */}
-      <PaginationElement page={page} setPage={setPage} lastPage={lastPage} setQuery={setQuery} list={anime_list} perPage={perPage} />
+      {data?.Page?.pageInfo?.lastPage &&
+        <PaginationElement page={page} setPage={setPage} lastPage={lastPage} setQuery={setQuery} list={anime_list} perPage={perPage} />
+      }
     </>
   )
 }
