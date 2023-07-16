@@ -12,7 +12,7 @@ import getLayouts from '@/utils/getLayouts'
 import dynamic from 'next/dynamic'
 
 const DynamicCards = dynamic(() => import('@/components/Cards'), {
-  ssr: false,
+  ssr: true,
 })
 
 // anilist
