@@ -204,7 +204,7 @@ const CardElement = ({media}: {media: CardProps}) => {
                             line-height: 1.5;
                             color: #888;
                             display: -webkit-box;
-                            -webkit-line-clamp: 9;
+                            -webkit-line-clamp: 5;
                             -webkit-box-orient: vertical;
                             overflow: hidden;
                             text-overflow: ellipsis;
