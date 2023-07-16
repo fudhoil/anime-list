@@ -5,21 +5,30 @@ import { toast } from 'react-toastify';
 import { useState } from "react";
 import WarningPopup from "./WarningPopup";
 
-const EditElement = ({
-    collection,
-    editCollectionName,
-    handleEdit,
-    setEditCollectionId,
-    setEditCollectionName,
-    errorEdit,
-    editCollectionId,
-    setEditCollection,
-}: any) => {
-    const {collections} = useCollections()
+const EditElement = () => {
+    const {collections, collection} = useCollections()
     const dispatch = useCollectionsDispatch()
     const [showDeletePopup, setShowDeletePopup] = useState(false)
+    const [editCollectionId, setEditCollectionId] = useState(null)
+    const [editCollectionName, setEditCollectionName] = useState("")
+    const [errorEdit, setErrorEdit] = useState("")
 
-    console.log('collection', collection)
+    const handleEdit = (e: any) => {
+        setEditCollectionName(e.target.value)
+        setErrorEdit("")
+
+        // no special characters
+        if (e.target.value.match(/^[a-zA-Z0-9 ]*$/)) {
+            setErrorEdit("")
+        } else {
+            setErrorEdit("No special characters allowed")
+        }
+
+        // cannot be the same as another collection
+        if (collections?.find((c: any) => c.title === e.target.value)) {
+            setErrorEdit("Collection name already exists")
+        }
+    }
     return (
         <>
              { collection.id === editCollectionId ? (
@@ -71,7 +80,7 @@ const EditElement = ({
                     line-height: 1.2;
                     width: 100%;
                     `}>
-                        {collections?.find((c: any) => c.id === collection.id)?.title} 
+                        {collection?.title}
                         <span className={css`
                         font-size: 0.75rem;
                         font-weight: 300;
@@ -138,12 +147,19 @@ const EditElement = ({
                         title: editCollectionName, 
                         media: collection.media }, 
                         oldCollection: collection });
+                    
+                    dispatch({ type: 'SET_COLLECTION', collection: {
+                        id : collection.id,
+                        title: editCollectionName,
+                        media: collection.media
+                    }});
+                    
                         localStorage.setItem('collections', JSON.stringify([...collections.filter((c: any) => c.id !== collection.id), { 
                         id : collection.id,
                         title: editCollectionName, 
                         media: collection.media }]));
                     setEditCollectionId(null);
-                    setEditCollectionName(null);
+                    setEditCollectionName("");
                     toast.success('Collection edited successfully');
                 }}
                 disabled={errorEdit?.length > 0 || editCollectionName?.length < 1}
@@ -154,7 +170,7 @@ const EditElement = ({
                 text="Cancel"
                 onClick={() => {
                     setEditCollectionId(null);
-                    setEditCollectionName(null);
+                    setEditCollectionName("");
                 }}
                 />
                 </div>

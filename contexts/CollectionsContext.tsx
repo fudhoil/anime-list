@@ -96,7 +96,7 @@ export const collectionsReducer = (state: any, action: any) => {
         case 'EDIT_COLLECTION':
             const editCollection = action.editCollection;
             const oldCollection = action.oldCollection;
-            const newCollectionsAfterEdit = state.collections.filter((collection: any) => collection.title !== oldCollection.title);
+            const newCollectionsAfterEdit = state.collections.filter((collection: any) => collection.id !== oldCollection.id);
             newCollectionsAfterEdit.push(editCollection);
             return {
                 ...state,

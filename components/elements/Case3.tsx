@@ -6,28 +6,11 @@ import BackMainCollections from './BackMainCollections'
 import EditElement from './EditElement'
 import Image from 'next/image'
 
-const Case3 = ({
-    modalContent,
-    newModalContent,
-    newCollectionName,
-    setNewCollectionName,
-    editCollectionName,
-    editCollectionId,
-    handleChange,
-    handleEdit,
-    setEditCollectionId,
-    setEditCollectionName,
-    error,
-    errorEdit,
-    handleSelect,
-    selectedCollections,
-    selectChange,
-}: any) => {
+const Case3 = () => {
     const {
-        collections,
         collection,
     } = useCollections()
-    const dispatch = useCollectionsDispatch()
+    
     return (
         <div className={css`
         display: flex;
@@ -55,24 +38,7 @@ const Case3 = ({
                     align-items: center;
                     justify-content: space-between;
                     `}>
-                    <EditElement
-                        modalContent={modalContent}
-                        newModalContent={newModalContent}
-                        newCollectionName={newCollectionName}
-                        setNewCollectionName={setNewCollectionName}
-                        editCollectionName={editCollectionName}
-                        editCollectionId={editCollectionId}
-                        handleChange={handleChange}
-                        handleEdit={handleEdit}
-                        setEditCollectionId={setEditCollectionId}
-                        setEditCollectionName={setEditCollectionName}
-                        error={error}
-                        errorEdit={errorEdit}
-                        handleSelect={handleSelect}
-                        selectedCollections={selectedCollections}
-                        selectChange={selectChange}
-                        collection={collection}
-                    />
+                    <EditElement />
                     </div>
                     
                     {/* line */}

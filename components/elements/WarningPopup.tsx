@@ -1,5 +1,6 @@
 import { useCollections, useCollectionsDispatch } from "@/contexts/CollectionsContext";
 import { css } from "@emotion/css";
+import Image from "next/image";
 import { toast } from "react-toastify";
 
 const WarningPopup = ({
@@ -31,7 +32,6 @@ const WarningPopup = ({
             align-items: center;
             justify-content: center;
             width: 300px;
-            height: 200px;
             border-radius: 10px;
             margin: 0 auto;
             background-color: #fff;
@@ -39,14 +39,31 @@ const WarningPopup = ({
             padding: 1rem;
             gap: 1rem;
             `}>
-                <h1 className={css`
-                font-size: 1.5rem;
-                font-weight: 500;
-                `}>Warning</h1>
+                <div className={css`
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                gap: 1rem;
+                `}>
+                    <h1 className={css`
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    `}>WARNING</h1>
+
+                    {/* exclamation mark */}
+                    <Image src="/icons/exclamation-mark.svg" width={100} height={100} alt="exclamation mark" />
+                    
+                </div>
+
                 <p className={css`
                 font-size: 1rem;
                 font-weight: 300;
+                text-align: center;
                 `}>Are you sure you want to delete this collection?</p>
+
+                {/* buttons */}
                 <div className={css`
                 display: flex;
                 flex-direction: row;

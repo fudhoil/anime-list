@@ -201,7 +201,7 @@ const DetailPage = ({ data }: { data: any }) => {
                             align-self: center;
                             white-space: nowrap;
                             `}>
-                        ({data?.episodes} EP)</span>
+                        (EP {data?.episodes})</span>
                     </h1>
                     {/* section details */}
                     <div className={css`

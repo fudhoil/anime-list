@@ -5,7 +5,7 @@ import { ApolloProvider, client } from '../lib/apolloClient'
 import { CollectionsProvider } from '@/contexts/CollectionsContext'
 import { ReactNode } from 'react'
 import { NextPage } from 'next'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, Zoom, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NextNProgress from 'nextjs-progressbar';
 
@@ -32,7 +32,11 @@ const App = ({ Component, pageProps }: Props) => {
             showOnShallow={true}
           />
           <Component {...pageProps} />
-          <ToastContainer />
+          <ToastContainer 
+          position='top-center'
+          hideProgressBar={true}
+          transition={Zoom}
+          />
           </>
         )}
       </CollectionsProvider>
