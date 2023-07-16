@@ -107,6 +107,11 @@ const InputCollection = () => {
 
                             display: ${editMode ? 'flex' : 'none'};
                             position: relative;
+
+                            @media (max-width: 768px) {
+                                width: 100%;
+                                background-color: #222;
+                            }
                             `}>
                                 <input type="text" placeholder="ex: OP Anime Collections" className={css`
                                 width: 100%;
@@ -139,7 +144,7 @@ const InputCollection = () => {
                                 <span className={css`
                                 position: absolute;
                                 top: 0;
-                                left: 1rem;
+                                left: 0;
                                 transform: translateY(85%);
                                 display: flex;
                                 flex-direction: row;
@@ -147,6 +152,10 @@ const InputCollection = () => {
                                 height: 100%;
                                 // red color
                                 color: #ff4444;
+
+                                @media (max-width: 768px) {
+                                    transform: translateY(-85%);
+                                }
                                 `}>
                                     {errorMessage}
                                 </span>

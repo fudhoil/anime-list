@@ -46,6 +46,7 @@ const EditElement = () => {
                 align-items: center;
                 width: 100%;
                 gap: 1rem;
+                position: relative;
                 `}>
                 <input type="text" className={css`
                  width: 100%;
@@ -76,6 +77,14 @@ const EditElement = () => {
                     overflow: hidden;
                     color: red;
                     width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    transform: translateY(200%);
+
+                    @media (max-width: 768px) {
+                        transform: translateY(-100%);
+                    }
                     `}>{errorEdit}</span>
                 )}
                 </div>
