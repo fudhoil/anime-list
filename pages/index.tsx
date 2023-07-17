@@ -13,52 +13,11 @@ import {
 import CardsSkeleton from "@/components/skeletons/CardsSkeleton";
 import getLayouts from "@/utils/getLayouts";
 import dynamic from "next/dynamic";
+import { anime_list } from "@/graphql/Queries";
 
 const DynamicCards = dynamic(() => import("@/components/cards/Cards"), {
   ssr: false,
 });
-
-// anilist
-const anime_list = ({ page, perPage }: { page: number; perPage: number }) => {
-  return gql(`
-    query {
-      Page(page: ${page}, perPage: ${perPage}) {
-        pageInfo {
-          total
-          perPage
-          currentPage
-          lastPage
-          hasNextPage
-        },
-        media {
-          id
-          title {
-            romaji
-          }
-          coverImage {
-            large
-            medium
-          }
-          description
-          startDate {
-            year
-            month
-            day
-          }
-          endDate {
-            year
-            month
-            day
-          }
-          episodes
-          duration
-          genres
-          averageScore
-        }
-      }
-    }
-  `);
-};
 
 export default function Home() {
   const [page, setPage] = useState(1);
