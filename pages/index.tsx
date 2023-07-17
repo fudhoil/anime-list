@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { gql, useQuery } from "@/lib/apolloClient";
-import Cards from "@/components/Cards";
+import Cards from "@/components/cards/Cards";
 import { css } from "@emotion/css";
 import Link from "next/link";
 import { use, useEffect, useState } from "react";
