@@ -1,12 +1,12 @@
 import { css } from "@emotion/css";
-import Button from "./Button";
+import Button from "@/components/buttons/Button";
 import {
   useCollections,
   useCollectionsDispatch,
 } from "@/contexts/CollectionsContext";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import WarningPopup from "./WarningPopup";
+import WarningPopup from "@/components/popups/WarningPopup";
 
 const EditElement = () => {
   const { collections, collection } = useCollections();

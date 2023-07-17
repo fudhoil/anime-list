@@ -6,7 +6,7 @@ import { css } from "@emotion/css";
 import parse from "html-react-parser";
 import Image from "next/image";
 import { toast } from "react-toastify";
-import InputCollection from "./InputCollection";
+import InputCollection from "@/components/inputs/InputCollection";
 
 const Case1 = ({
   modalContent,
@@ -40,8 +40,7 @@ const Case1 = ({
             width: 100%;
             padding: 1rem;
             box-shadow: -2px 0px 0px 0px #333;
-          `}
-        >
+          `}>
           {/* or create new collection */}
           <InputCollection />
         </div>

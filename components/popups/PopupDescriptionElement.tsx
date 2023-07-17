@@ -1,9 +1,9 @@
 import { css } from "@emotion/css";
-import DescriptionElement from "./DescriptionElement";
+import DescriptionElement from "@/components/DescriptionElement";
 import { useEffect, useState } from "react";
 import type { CardProps } from "@/types/elements";
-import TitleElement from "./TitleElement";
-import SmallDetailElement from "./SmallDetailElement";
+import TitleElement from "@/components/TitleElement";
+import SmallDetailElement from "@/components/SmallDetailElement";
 
 const PopupDescriptionElement = ({
   content,
@@ -34,8 +34,7 @@ const PopupDescriptionElement = ({
         top: ${isMobile ? "0" : "20%"};
         left: ${isMobile || isLeft ? "100%" : "-111%"};
         z-index: 999;
-      `}
-    >
+      `}>
       {/* All details */}
       <div
         className={css`
@@ -46,8 +45,7 @@ const PopupDescriptionElement = ({
           margin-bottom: 1rem;
           gap: 1rem;
           position: relative;
-        `}
-      >
+        `}>
         {/* details */}
         <div
           className={css`
@@ -57,8 +55,7 @@ const PopupDescriptionElement = ({
             align-items: end;
             gap: 0.5rem;
             line-height: 1.2rem;
-          `}
-        >
+          `}>
           <SmallDetailElement text={content?.startDate?.year} />
           {" | "}
           <SmallDetailElement

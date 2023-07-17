@@ -6,11 +6,14 @@ import {
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
 
-const DynamicHeader = dynamic(() => import("./elements/Header"), {
-  ssr: false,
-});
+const DynamicHeader = dynamic(
+  () => import("@/components/bases/headers/Header"),
+  {
+    ssr: false,
+  }
+);
 
-const DinamicModal = dynamic(() => import("@/components/Modal"), {
+const DinamicModal = dynamic(() => import("@/components/modals/Modal"), {
   ssr: false,
 });
 
@@ -41,8 +44,7 @@ const Layout = (props: any) => {
         margin: 0 auto;
         padding: 1rem 1rem;
         color: #fafafa;
-      `}
-    >
+      `}>
       <DynamicHeader title="Anime List" subtitle="List of all anime" />
       {children}
       <DinamicModal />

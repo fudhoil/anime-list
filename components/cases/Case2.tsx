@@ -5,8 +5,8 @@ import {
   useCollections,
   useCollectionsDispatch,
 } from "@/contexts/CollectionsContext";
-import InputCollection from "./InputCollection";
-import TitleModal from "./TitleModal";
+import InputCollection from "@/components/inputs/InputCollection";
+import TitleModal from "@/components/TitleModal";
 
 const Case2 = ({
   modalContent,

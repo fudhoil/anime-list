@@ -1,20 +1,20 @@
 import Head from "next/head";
 import Image from "next/image";
-import { gql, useQuery } from "../lib/apolloClient";
+import { gql, useQuery } from "@/lib/apolloClient";
 import Cards from "@/components/Cards";
 import { css } from "@emotion/css";
 import Link from "next/link";
 import { use, useEffect, useState } from "react";
-import PaginationElement from "@/components/elements/PaginationElement";
+import PaginationElement from "@/components/PaginationElement";
 import {
   useCollections,
   useCollectionsDispatch,
 } from "@/contexts/CollectionsContext";
-import CardsSkeleton from "@/components/elements/skeleton/CardsSkeleton";
+import CardsSkeleton from "@/components/skeletons/CardsSkeleton";
 import getLayouts from "@/utils/getLayouts";
 import dynamic from "next/dynamic";
 
-const DynamicCards = dynamic(() => import("@/components/Cards"), {
+const DynamicCards = dynamic(() => import("@/components/cards/Cards"), {
   ssr: false,
 });
 

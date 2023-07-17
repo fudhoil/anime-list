@@ -1,5 +1,5 @@
 import { css } from "@emotion/css";
-import CardSkeleton from "./CardSkeleton";
+import CardSkeleton from "@/components/skeletons/CardSkeleton";
 
 const CardsSkeleton = ({ count }: { count: number }) => {
   return (

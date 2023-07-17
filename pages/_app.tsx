@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import type { NextComponentType } from "next";
-import { ApolloProvider, client } from "../lib/apolloClient";
+import { ApolloProvider, client } from "@/lib/apolloClient";
 import { CollectionsProvider } from "@/contexts/CollectionsContext";
 import { ReactNode } from "react";
 import { NextPage } from "next";

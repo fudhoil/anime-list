@@ -3,14 +3,14 @@ import {
   useCollectionsDispatch,
 } from "@/contexts/CollectionsContext";
 import { css } from "@emotion/css";
-import ModalBase from "./elements/ModalBase";
+import ModalBase from "@/components/modals/ModalBase";
 import Image from "next/image";
 import parse from "html-react-parser";
 import { SetStateAction, use, useEffect, useState } from "react";
-import Case2 from "./elements/Case2";
+import Case2 from "@/components/cases/Case2";
 import { toast } from "react-toastify";
-import Case1 from "./elements/Case1";
-import Case3 from "./elements/Case3";
+import Case1 from "@/components/cases/Case1";
+import Case3 from "@/components/cases/Case3";
 
 const Modal = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -84,7 +84,7 @@ const Modal = () => {
       setSelectedCollections([...selectedCollections, title]);
     } else {
       setSelectedCollections(
-        selectedCollections.filter((collection: any) => collection !== title),
+        selectedCollections.filter((collection: any) => collection !== title)
       );
     }
 
@@ -96,12 +96,12 @@ const Modal = () => {
     if (modalContent?.id) {
       const collections = state?.collections?.filter(
         (collection: any) =>
-          collection?.media?.find((m: any) => m?.id === modalContent?.id),
+          collection?.media?.find((m: any) => m?.id === modalContent?.id)
       );
       console.log("on modal open, collections: ", collections);
       if (collections?.length > 0) {
         setSelectedCollections(
-          collections.map((collection: any) => collection?.title),
+          collections.map((collection: any) => collection?.title)
         );
       } else {
         setSelectedCollections([]);
@@ -119,8 +119,7 @@ const Modal = () => {
           width: 100%;
           padding: 1rem 0.25rem;
           overflow-y: auto;
-        `}
-      >
+        `}>
         {collections?.length === 0 ? (
           <div
             className={css`
@@ -139,8 +138,7 @@ const Modal = () => {
                 justify-content: center;
                 gap: 2rem;
               }
-            `}
-          >
+            `}>
             {/* case 1 */}
             <Case1
               collections={collections}
@@ -182,8 +180,7 @@ const Modal = () => {
                     justify-content: center;
                     gap: 2rem;
                   }
-                `}
-              >
+                `}>
                 <Case2
                   collections={collections}
                   dispatch={dispatch}

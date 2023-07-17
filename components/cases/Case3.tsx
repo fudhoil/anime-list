@@ -4,9 +4,9 @@ import {
 } from "@/contexts/CollectionsContext";
 import { css } from "@emotion/css";
 import parse from "html-react-parser";
-import CardElement from "./CardElement";
-import BackMainCollections from "./BackMainCollections";
-import EditElement from "./EditElement";
+import CardElement from "@/components/cards/CardElement";
+import BackMainCollections from "@/components/buttons/BackMainCollections";
+import EditElement from "@/components/inputs/EditElement";
 import Image from "next/image";
 
 const Case3 = () => {

@@ -4,7 +4,7 @@ import {
 } from "@/contexts/CollectionsContext";
 import { css } from "@emotion/css";
 import { toast } from "react-toastify";
-import TitleModal from "./TitleModal";
+import TitleModal from "@/components/modals/TitleModal";
 import { useState } from "react";
 
 const InputCollection = () => {

@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "@/components/bases/layouts/Layout";
 
 export const getBaseLayout = (page: any, props: any) => (
   <Layout {...props}>{page}</Layout>

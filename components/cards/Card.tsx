@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { css } from "@emotion/css";
 import parse from "html-react-parser";
-import TitleElement from "./elements/TitleElement";
-import SmallDetailElement from "./elements/SmallDetailElement";
+import TitleElement from "@/components/TitleElement";
+import SmallDetailElement from "@/components/SmallDetailElement";
 import { use, useEffect, useRef, useState } from "react";
-import PopupDescriptionElement from "./elements/PopupDescriptionElement";
+import PopupDescriptionElement from "@/components/popups/PopupDescriptionElement";
 import {
   useCollections,
   useCollectionsDispatch,
@@ -13,7 +13,7 @@ import {
 import { useRouter } from "next/router";
 import type { CardProps } from "@/types/elements";
 import { toast } from "react-toastify";
-import DropdownCollections from "./elements/DropdownCollections";
+import DropdownCollections from "@/components/DropdownCollections";
 
 const card_css = css`
   padding: 5px;
@@ -113,8 +113,7 @@ const Card = (props: CardProps) => {
         width: 100%;
         margin: 0 auto;
         padding: 1rem 0.25rem;
-      `}
-    >
+      `}>
       <button
         className={css`
                 position: relative;
@@ -133,12 +132,11 @@ const Card = (props: CardProps) => {
         // }}
         onClick={() => {
           router.push(
-            `/anime/${props?.title?.romaji?.replace(/\s/g, "-").toLowerCase()}`,
+            `/anime/${props?.title?.romaji?.replace(/\s/g, "-").toLowerCase()}`
           );
         }}
         onMouseEnter={() => !isMobile && setShowDescription(true)}
-        onMouseLeave={() => setShowDescription(false)}
-      >
+        onMouseLeave={() => setShowDescription(false)}>
         <div className={card_css} data-name="card" ref={ref}>
           <div className={card_header_css} data-name="card-header">
             <Image
@@ -171,8 +169,7 @@ const Card = (props: CardProps) => {
               align-items: center;
               padding: 1rem;
               height: 100%;
-            `}
-          >
+            `}>
             {/* arror to the right */}
             <div
               className={css`
@@ -210,16 +207,14 @@ const Card = (props: CardProps) => {
                 background-color: #111;
                 padding: 0.5rem;
                 border-radius: 5px;
-              `}
-            >
+              `}>
               <div
                 className={css`
                   display: flex;
                   flex-direction: row;
                   justify-content: space-between;
                   align-items: center;
-                `}
-              >
+                `}>
                 <svg
                   className={css`
                     width: 1.2rem;
@@ -227,16 +222,14 @@ const Card = (props: CardProps) => {
                     fill: #f1c40f;
                     margin-right: 0.5rem;
                   `}
-                  viewBox="0 0 24 24"
-                >
+                  viewBox="0 0 24 24">
                   <path d="M12 2.5L9.5 8.5H2.5L8.5 13.5L6.5 20.5L12 15L17.5 20.5L15.5 13.5L21.5 8.5H14.5L12 2.5Z" />
                 </svg>
                 <span
                   className={css`
                     font-size: 0.8rem;
                     font-weight: 600;
-                  `}
-                >
+                  `}>
                   {props?.averageScore}%
                 </span>
               </div>
@@ -258,8 +251,7 @@ const Card = (props: CardProps) => {
                 flex-direction: column;
                 gap: 0.4rem;
                 padding: 0.1rem;
-              `}
-            >
+              `}>
               <SmallDetailElement text={props?.genres[0]} />
             </div>
           </div>
@@ -268,8 +260,7 @@ const Card = (props: CardProps) => {
       <div
         className={css`
           position: relative;
-        `}
-      >
+        `}>
         <button
           className={button_css}
           onMouseEnter={() => {
@@ -284,8 +275,7 @@ const Card = (props: CardProps) => {
             dispatch({ type: "SET_DROPDOWN", dropdown: false });
             dispatch({ type: "SET_DROPDOWN_CONTENT", dropdownContent: null });
             dispatch({ type: "SET_DROPDOWN_TYPE", dropdownType: null });
-          }}
-        >
+          }}>
           Add to collection
           <DropdownCollections media={props} isLeft={isLeft} />
         </button>
