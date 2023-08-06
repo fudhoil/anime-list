@@ -16,8 +16,7 @@ const ModalBase = ({ children, open }: { children: any; open: boolean }) => {
         display: ${open ? "flex" : "none"};
         justify-content: center;
         align-items: center;
-      `}
-    >
+      `}>
       <div
         className={css`
           position: relative;
@@ -34,8 +33,7 @@ const ModalBase = ({ children, open }: { children: any; open: boolean }) => {
           @media (min-width: 1024px) {
             width: 50%;
           }
-        `}
-      >
+        `}>
         {children}
         <button
           className={css`
@@ -46,15 +44,14 @@ const ModalBase = ({ children, open }: { children: any; open: boolean }) => {
             border: none;
             color: #fafafa;
             cursor: pointer;
-            border-radius: 0 5px 0 5px;
+            border-radius: 0 0 0 5px;
             background-color: #333;
 
             &:hover {
               background-color: #222;
             }
           `}
-          onClick={() => dispatch({ type: "SET_MODAL", modal: false })}
-        >
+          onClick={() => dispatch({ type: "SET_MODAL", modal: false })}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={css`
@@ -63,8 +60,7 @@ const ModalBase = ({ children, open }: { children: any; open: boolean }) => {
               fill: #fafafa;
             `}
             viewBox="0 0 20 20"
-            fill="currentColor"
-          >
+            fill="currentColor">
             <path
               fillRule="evenodd"
               d="M10.707 10l4.147-4.146a.5.5 0 10-.708-.708L10 9.293 5.854 5.146a.5.5 0 00-.708.708L9.293 10l-4.147 4.146a.5.5 0 10.708.708L10 10.707l4.146 4.147a.5.5 0 00.708-.708L10.707 10z"

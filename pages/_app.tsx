@@ -36,8 +36,9 @@ const App = ({ Component, pageProps }: Props) => {
               position="top-center"
               hideProgressBar={true}
               transition={Zoom}
+              autoClose={3000}
             />
-          </>,
+          </>
         )}
       </CollectionsProvider>
     </ApolloProvider>

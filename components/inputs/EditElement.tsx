@@ -28,7 +28,10 @@ const EditElement = () => {
     }
 
     // cannot be the same as another collection
-    if (collections?.find((c: any) => c.title === e.target.value)) {
+    if (
+      collections?.find((c: any) => c.title === e.target.value) &&
+      e.target.value !== collection.title
+    ) {
       setErrorEdit("Collection name already exists");
     }
   };
@@ -42,8 +45,7 @@ const EditElement = () => {
         height: 100%;
         font-size: 0.75rem;
         font-weight: 300;
-      `}
-    >
+      `}>
       {collection.id === editCollectionId ? (
         <div
           className={css`
@@ -53,8 +55,7 @@ const EditElement = () => {
             width: 100%;
             gap: 1rem;
             position: relative;
-          `}
-        >
+          `}>
           <input
             type="text"
             className={css`
@@ -96,8 +97,7 @@ const EditElement = () => {
                 @media (max-width: 768px) {
                   transform: translateY(-100%);
                 }
-              `}
-            >
+              `}>
               {errorEdit}
             </span>
           )}
@@ -111,8 +111,7 @@ const EditElement = () => {
               font-weight: 500;
               line-height: 1.2;
               width: 100%;
-            `}
-          >
+            `}>
             {collection?.title}
             <span
               className={css`
@@ -123,8 +122,7 @@ const EditElement = () => {
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
-              `}
-            >
+              `}>
               {collection?.media?.length} items
             </span>
           </h2>
@@ -139,8 +137,7 @@ const EditElement = () => {
           flex-direction: row;
           width: 100%;
           gap: 1rem;
-        `}
-      >
+        `}>
         {editCollectionId !== collection.id && (
           <div
             className={css`
@@ -148,8 +145,7 @@ const EditElement = () => {
               flex-direction: row;
               gap: 1rem;
               margin-left: auto;
-            `}
-          >
+            `}>
             <Button
               text="Edit"
               onClick={() => {
@@ -177,47 +173,55 @@ const EditElement = () => {
 
               // to the right
               margin-left: auto;
-            `}
-          >
+            `}>
             <Button
               text="Save"
               onClick={() => {
                 if (errorEdit) {
                   return;
                 }
-                dispatch({
-                  type: "EDIT_COLLECTION",
-                  editCollection: {
-                    id: collection.id,
-                    title: editCollectionName,
-                    media: collection.media,
-                  },
-                  oldCollection: collection,
-                });
 
-                dispatch({
-                  type: "SET_COLLECTION",
-                  collection: {
-                    id: collection.id,
-                    title: editCollectionName,
-                    media: collection.media,
-                  },
-                });
-
-                localStorage.setItem(
-                  "collections",
-                  JSON.stringify([
-                    ...collections.filter((c: any) => c.id !== collection.id),
-                    {
+                if (editCollectionName !== collection.title) {
+                  dispatch({
+                    type: "EDIT_COLLECTION",
+                    editCollection: {
                       id: collection.id,
                       title: editCollectionName,
                       media: collection.media,
                     },
-                  ]),
-                );
-                setEditCollectionId(null);
-                setEditCollectionName("");
-                toast.success("Collection edited successfully");
+                    oldCollection: collection,
+                  });
+
+                  dispatch({
+                    type: "SET_COLLECTION",
+                    collection: {
+                      id: collection.id,
+                      title: editCollectionName,
+                      media: collection.media,
+                    },
+                  });
+
+                  localStorage.setItem(
+                    "collections",
+                    JSON.stringify([
+                      ...collections.filter((c: any) => c.id !== collection.id),
+                      {
+                        id: collection.id,
+                        title: editCollectionName,
+                        media: collection.media,
+                      },
+                    ])
+                  );
+                  setEditCollectionId(null);
+                  setEditCollectionName("");
+                  toast.dismiss();
+                  toast.success("Collection edited successfully");
+                } else {
+                  setEditCollectionId(null);
+                  setEditCollectionName("");
+                  toast.dismiss();
+                  toast.info("No changes made");
+                }
               }}
               disabled={errorEdit?.length > 0 || editCollectionName?.length < 1}
             />
@@ -229,6 +233,7 @@ const EditElement = () => {
                 setEditCollectionId(null);
                 setEditCollectionName("");
               }}
+              disabled={errorEdit?.length > 0}
             />
           </div>
         )}
