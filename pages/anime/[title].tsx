@@ -55,8 +55,7 @@ const DetailPage = ({ data }: { data: any }) => {
           align-items: center;
           width: 100%;
           padding: 1rem 0.25rem;
-        `}
-      >
+        `}>
         <div
           className={css`
             display: flex;
@@ -65,16 +64,14 @@ const DetailPage = ({ data }: { data: any }) => {
             width: 100%;
             margin: 0 auto;
             padding: 1rem 0.25rem;
-          `}
-        >
+          `}>
           <div
             className={css`
               display: flex;
               flex-direction: row;
               align-items: center;
               gap: 1rem;
-            `}
-          >
+            `}>
             <div className={tooltip_css}>
               {/* tooltip text */}
               <span
@@ -93,8 +90,7 @@ const DetailPage = ({ data }: { data: any }) => {
                   margin-left: -60px;
                   opacity: 0;
                   transition: opacity 0.3s;
-                `}
-              >
+                `}>
                 Scores
               </span>
               <svg
@@ -107,8 +103,7 @@ const DetailPage = ({ data }: { data: any }) => {
                 stroke="#f1c40f"
                 fill="none"
                 strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+                strokeLinejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" />
                 <path d="M12 17.25l-6.386 3.92l1.623-7.067l-5.587-4.853l7.34-.636L12 3l2.71 6.614l7.34 .636l-5.587 4.853l1.623 7.067z" />
               </svg>
@@ -116,8 +111,7 @@ const DetailPage = ({ data }: { data: any }) => {
                 className={css`
                   font-size: 1.2rem;
                   font-weight: 400;
-                `}
-              >
+                `}>
                 {data?.averageScore}%
               </span>
             </div>
@@ -142,8 +136,7 @@ const DetailPage = ({ data }: { data: any }) => {
                   margin-left: -60px;
                   opacity: 0;
                   transition: opacity 0.3s;
-                `}
-              >
+                `}>
                 Favourites
               </span>
               <Image
@@ -156,8 +149,7 @@ const DetailPage = ({ data }: { data: any }) => {
                 className={css`
                   font-size: 1.2rem;
                   font-weight: 400;
-                `}
-              >
+                `}>
                 {data?.favourites}
               </span>
             </div>
@@ -181,8 +173,7 @@ const DetailPage = ({ data }: { data: any }) => {
                   margin-left: -60px;
                   opacity: 0;
                   transition: opacity 0.3s;
-                `}
-              >
+                `}>
                 Popularity
               </span>
               <svg
@@ -195,8 +186,7 @@ const DetailPage = ({ data }: { data: any }) => {
                 stroke="#2ecc71"
                 fill="none"
                 strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+                strokeLinejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" />
                 <polyline points="3 17 9 11 13 15 21 7" />
                 <polyline points="14 7 21 7 21 14" />
@@ -205,8 +195,7 @@ const DetailPage = ({ data }: { data: any }) => {
                 className={css`
                   font-size: 1.2rem;
                   font-weight: 400;
-                `}
-              >
+                `}>
                 {data?.popularity}
               </span>
             </div>
@@ -225,8 +214,7 @@ const DetailPage = ({ data }: { data: any }) => {
               flex-direction: column;
               gap: 2rem;
             }
-          `}
-        >
+          `}>
           <h1
             className={css`
               font-size: 2rem;
@@ -241,8 +229,7 @@ const DetailPage = ({ data }: { data: any }) => {
               @media (max-width: 768px) {
                 justify-content: space-between;
               }
-            `}
-          >
+            `}>
             {data?.title?.romaji}
             <span
               className={css`
@@ -252,8 +239,7 @@ const DetailPage = ({ data }: { data: any }) => {
                 margin-left: 1rem;
                 align-self: center;
                 white-space: nowrap;
-              `}
-            >
+              `}>
               (EP {data?.episodes})
             </span>
           </h1>
@@ -275,8 +261,7 @@ const DetailPage = ({ data }: { data: any }) => {
                         @media (max-width: 768px) {
                             width: 100%;
                             margin-top: 1rem;
-                        `}
-          >
+                        `}>
             <span
               className={css`
                 font-size: 1.2rem;
@@ -284,8 +269,7 @@ const DetailPage = ({ data }: { data: any }) => {
                 color: #999;
                 // no wrap
                 white-space: nowrap;
-              `}
-            >
+              `}>
               {data?.duration} min
             </span>
             <div
@@ -295,8 +279,7 @@ const DetailPage = ({ data }: { data: any }) => {
                 align-items: center;
                 gap: 0.5rem;
                 font-size: 0.75rem;
-              `}
-            >
+              `}>
               <span>Tags:</span>
               {data?.tags?.map((tag: any, i: number) => (
                 <span
@@ -305,8 +288,7 @@ const DetailPage = ({ data }: { data: any }) => {
                     // no wrap
                     white-space: nowrap;
                   `}
-                  key={i}
-                >
+                  key={i}>
                   {tag?.name}
                   {data?.tags?.length > 1 ? ", " : ""}
                 </span>
@@ -320,8 +302,7 @@ const DetailPage = ({ data }: { data: any }) => {
                 align-items: center;
                 gap: 0.5rem;
                 font-size: 0.75rem;
-              `}
-            >
+              `}>
               <span>Genre:</span>
               {data?.genres?.map((genre: any, i: number) => (
                 <span
@@ -330,8 +311,7 @@ const DetailPage = ({ data }: { data: any }) => {
                     // no wrap
                     white-space: nowrap;
                   `}
-                  key={i}
-                >
+                  key={i}>
                   {genre}
                   {data?.genres?.length > 1 ? ", " : ""}
                 </span>
@@ -356,8 +336,7 @@ const DetailPage = ({ data }: { data: any }) => {
             max-width: 800px;
             margin: 0 auto;
             gap: 2rem;
-          `}
-        >
+          `}>
           <p
             className={css`
               font-size: 1.2rem;
@@ -366,8 +345,7 @@ const DetailPage = ({ data }: { data: any }) => {
               line-height: 1.5;
 
               text-indent: 2rem;
-            `}
-          >
+            `}>
             {parse(data?.description)}
           </p>
         </div>
@@ -384,7 +362,7 @@ export const getServerSideProps = async (context: any) => {
   const titleFormatted = title?.replace(/-/g, " ");
 
   // fetch data from an API anilist.co
-  const res = await fetch(`https://graphql.anilist.co`, {
+  const data = await fetch(`https://graphql.anilist.co`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -437,12 +415,13 @@ export const getServerSideProps = async (context: any) => {
         search: titleFormatted,
       },
     }),
-  });
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
 
-  const data = await res.json();
   return {
     props: {
-      data: data?.data?.Media,
+      data: data?.data?.Media || [],
     },
   };
 };
