@@ -50,8 +50,7 @@ const Cards = ({ data }: { data: CardProps[] }) => {
         //         -webkit-line-clamp: 5;
         //     }
         // }
-      `}
-    >
+      `}>
       {data?.map((card) => <Card key={card.id} {...card} />)}
     </div>
   );

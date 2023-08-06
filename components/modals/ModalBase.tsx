@@ -1,8 +1,20 @@
 import { useCollectionsDispatch } from "@/contexts/CollectionsContext";
 import { css } from "@emotion/css";
+import { useEffect } from "react";
 
 const ModalBase = ({ children, open }: { children: any; open: boolean }) => {
   const dispatch = useCollectionsDispatch();
+
+  useEffect(() => {
+    if (open) {
+      window.document.body.style.overflow = "hidden";
+      window.document.body.style.height = "100vh";
+    } else {
+      window.document.body.style.overflow = "unset";
+      window.document.body.style.height = "unset";
+    }
+  }, [open]);
+
   return (
     <div
       className={css`

@@ -16,7 +16,7 @@ import dynamic from "next/dynamic";
 import { anime_list } from "@/graphql/Queries";
 
 const DynamicCards = dynamic(() => import("@/components/cards/Cards"), {
-  ssr: false,
+  ssr: true,
 });
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
   const [lastPage, setLastPage] = useState(1);
   const [query, setQuery] = useState(anime_list({ page, perPage }));
   const { data, error, loading } = useQuery(query, {
-    ssr: false,
+    ssr: true,
   });
   const dispatch = useCollectionsDispatch();
   const {
