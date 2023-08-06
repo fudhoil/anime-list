@@ -22,7 +22,7 @@ const ModalBase = ({ children, open }: { children: any; open: boolean }) => {
           position: relative;
           background-color: #111;
           box-shadow: -2px 0px 0px 0px #333;
-          padding: 1rem;
+          padding: 3rem 1rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
